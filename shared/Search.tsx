@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { observer } from "mobx-react-lite";
 import ru from "@/messages/ru.json";
 import Product from "@/entities/Product";
@@ -18,28 +18,50 @@ const Search: React.FC<SearchProps> = observer(
   ({ onSearch, inputRef, initialValue = "" }) => {
     const [isClient, setIsClient] = useState(false);
     const [searchValue, setSearchValue] = useState("");
+    const [debouncedValue, setDebouncedValue] = useState("");
+    const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Эффект для инициализации клиентской части и начального значения
     useEffect(() => {
       setIsClient(true);
       if (initialValue) {
         setSearchValue(initialValue);
-        onSearch(initialValue);
+        setDebouncedValue(initialValue);
       }
     }, [initialValue]);
 
-    const triggerSearch = (value: string) => {
-      onSearch(value);
-    };
-
+    // Отдельный эффект для дебаунса ввода
     useEffect(() => {
-      if (isClient) {
-        triggerSearch(searchValue);
+      if (!isClient) return;
+
+      // Очищаем предыдущий таймер
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
       }
+
+      // Устанавливаем новый таймер для дебаунса
+      debounceTimerRef.current = setTimeout(() => {
+        setDebouncedValue(searchValue);
+      }, 300); // 300ms дебаунс
+
+      // Очистка при размонтировании
+      return () => {
+        if (debounceTimerRef.current) {
+          clearTimeout(debounceTimerRef.current);
+        }
+      };
     }, [searchValue, isClient]);
+
+    // Запускаем поиск только когда дебаунсированное значение изменилось
+    useEffect(() => {
+      if (isClient && debouncedValue !== undefined) {
+        onSearch(debouncedValue);
+      }
+    }, [debouncedValue, onSearch, isClient]);
 
     const handleClearSearch = () => {
       setSearchValue("");
-      onSearch("");
+      setDebouncedValue("");
     };
 
     return (

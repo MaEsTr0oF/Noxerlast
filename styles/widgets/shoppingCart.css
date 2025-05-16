@@ -724,16 +724,16 @@ input[type="number"] {
 }
 
 .limited-products-grid .productsSection {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(2, 1fr); */
+  /* gap: 10px; */
 }
 
-@media screen and (min-width: 480px) {
+/* @media screen and (min-width: 480px) {
   .limited-products-grid .productsSection {
     grid-template-columns: repeat(3, 1fr);
   }
-}
+} */
 
 .input-wrapper {
   position: relative;
