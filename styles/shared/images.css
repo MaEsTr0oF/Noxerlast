@@ -1,0 +1,25 @@
+img {
+  border-radius: 10px;
+}
+
+.color-circle img,
+.ratingContainer img,
+.info-icon,
+.description-expand-icon,
+.specs-expand-icon,
+.video-button-content img,
+.expand-icon,
+.categoryFilter-tag img,
+svg,
+.categoryFilter-tag-closeButton img,
+button img,
+button svg,
+.product-favorite svg,
+.product-favorite img {
+  border-radius: initial;
+}
+
+.categoryFilter-tag img,
+.color-circle {
+  border-radius: 100%;
+}

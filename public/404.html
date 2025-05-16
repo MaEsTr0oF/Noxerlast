@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Перенаправление</title>
+    <script>
+      // Извлекаем путь из URL
+      const path = window.location.pathname;
+      const basePath = "/static";
+
+      // Проверяем, нужен ли редирект
+      if (path.indexOf(basePath) !== 0 && path !== "/") {
+        // Находим неправильный путь и перенаправляем на главную с хешем
+        window.location.href = basePath + "/#" + path;
+      } else {
+        // Если на правильном пути, но нет хеша, перенаправляем на главную
+        window.location.href = basePath + "/";
+      }
+    </script>
+  </head>
+  <body>
+    <p>Перенаправление...</p>
+  </body>
+</html>

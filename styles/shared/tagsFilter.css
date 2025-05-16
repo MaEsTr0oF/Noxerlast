@@ -1,0 +1,167 @@
+.swiper-wrapper {
+  display: flex;
+}
+
+.tagsFilter {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  width: 100%;
+  /* height: 38px; */
+  overflow: hidden;
+  row-gap: 5px;
+}
+/* .custom-tagsFilter {
+  height: 53px;
+} */
+
+.tagsFilter-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  max-width: 171px;
+  height: 38px;
+  background-color: #ffffff;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+  box-shadow: 0px 0px 10px 0px #3030300d;
+  position: relative; /* Для анимации */
+}
+.custom-tagsFilter {
+  flex-wrap: nowrap;
+}
+.custom-tagsFilter-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  gap: 5px;
+  position: relative; /* Для анимации тегов */
+}
+.custom-tagsFilter-tags--open {
+  flex-wrap: wrap;
+}
+.custom-tagsFilter .tagsFilter-tag {
+  height: 24px;
+  background-color: #e7e7e7;
+  will-change: transform, opacity, background-color; /* Оптимизация анимации */
+}
+.custom-tagsFilter .tagsFilter-tag .tagsFilter-tag-count {
+  width: 10px;
+  color: #888887;
+}
+.custom-tagsFilter .tagsFilter-tag-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+.custom-tagsFilter .tagsFilter-tag--active {
+  background-color: rgba(60, 60, 60, 1);
+  color: #ffffff;
+  transform: scale(1.05); /* Небольшое увеличение активного тега */
+  z-index: 2; /* Поверх других элементов */
+}
+.custom-tagsFilter .tagsFilter-tag--active .tagsFilter-tag-count {
+  color: #c4c4c1;
+}
+
+/* Анимация перемещения тегов */
+.custom-tagsFilter .tagsFilter-tag {
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Анимация для тега, который перемещается в начало */
+.custom-tagsFilter .tagsFilter-tag--moving-front {
+  animation: moveToFront 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Анимация для остальных тегов, которые смещаются */
+.custom-tagsFilter .tagsFilter-tag--shifting {
+  animation: shiftRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes moveToFront {
+  0% {
+    transform: translateX(0) scale(1);
+    z-index: 1;
+  }
+  50% {
+    transform: translateX(-5px) scale(1.1);
+    z-index: 2;
+  }
+  100% {
+    transform: translateX(0) scale(1.05);
+    z-index: 2;
+  }
+}
+
+@keyframes shiftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.tagsFilter-tag-title {
+  font-size: 13px;
+  text-wrap: nowrap;
+}
+
+.tagsFilter-tag--active {
+  background-color: rgba(60, 60, 60, 1);
+  color: #ffffff;
+}
+
+.tagsFilter-tag-closeButton {
+  margin-left: 1px;
+  width: 10px;
+  height: 10px;
+}
+.tagsFilter-moreButton {
+  position: relative;
+  min-width: 40px;
+  text-wrap: nowrap;
+  padding-left: 5px;
+  font-size: 10px;
+  margin-left: auto;
+  margin-right: 5px;
+  color: rgba(30, 150, 200, 1);
+  cursor: pointer;
+}
+.tagsFilter-moreButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -18px;
+  background: linear-gradient(to right, #00000000 0%, #f1f1f1 100%);
+  width: 20px;
+  height: 100%;
+}
+.tagsFilter-hideButton {
+  font-size: 10px;
+  margin-left: 5px;
+  color: rgba(30, 150, 200, 1);
+  cursor: pointer;
+}
+
+/* Стили для тега Sale */
+.tagsFilter-tag--sale .tagsFilter-tag-title {
+  font-size: 12px;
+}
+.custom-tagsFilter .tagsFilter-tag--sale .tagsFilter-tag-count {
+}
+.custom-tagsFilter .tagsFilter-tag--sale.tagsFilter-tag--active {
+}

@@ -1,0 +1,51 @@
+.swiper-wrapper {
+  display: flex;
+}
+
+.categoryFilter {
+  position: relative;
+  display: flex;
+  margin-top: 13px;
+  height: auto;
+  overflow: hidden;
+}
+
+.categoryFilter-tag {
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  padding-left: 5px;
+  padding-right: 12px;
+  min-width: 90px;
+  /* max-width: 145px; */
+  height: 38px;
+  background-color: #ffffff;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.6s ease;
+  box-shadow: 0px 0px 10px 0px #3030300d;
+}
+
+.categoryFilter-tag img {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+
+.categoryFilter-tag-title {
+  font-size: 13px;
+  font-weight: 500;
+  text-wrap: nowrap;
+}
+
+.categoryFilter-tag--active {
+  background-color: rgba(60, 60, 60, 1);
+  color: #ffffff;
+}
+
+.categoryFilter-tag-closeButton {
+  margin-left: 1px;
+  width: 10px;
+  height: 10px;
+}

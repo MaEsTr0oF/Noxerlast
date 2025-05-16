@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Если запрос не к файлу и не к директории
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Перенаправляем всё на index.html (для SPA)
+RewriteRule ^ index.html [L]
+
+# Разрешаем показ в iframe для Telegram
+Header always set X-Frame-Options "ALLOW-FROM https://t.me/"
+Header always set Content-Security-Policy "frame-ancestors 'self' https://t.me/ https://*.telegram.org/;" 

@@ -1,0 +1,28 @@
+{
+  "entities": {
+    "product": {
+      "buttonText": "Подробнее"
+    }
+  },
+  "features": {
+
+  },
+  "shared": {
+    "search": {
+      "placeholder": "Найти товары"
+    }
+  },
+  "widgets": {
+    "header": {
+      "closeButtonText": "Закрыть",
+      "returnButtonText": "Назад",
+      "tgBotName": "@ai_brandbot"
+    },
+    "catalog": {
+      "title": "Каталог"
+    },
+    "favorites": {
+      "title": "Избранное"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.favoritesMain {
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  box-sizing: border-box;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.favoritesMain.favoritesMain--ios {
+  min-height: calc(100vh - 223px);
+}
+
+.favoritesMain-title {
+  font-family: var(--font-gilroy);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.favoritesMain-empty {
+  display: grid;
+  justify-items: center;
+  margin-top: 90px;
+  text-align: center;
+  padding: 20px;
+}
+
+.favoritesMain-empty-title {
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 120%;
+  color: #292928;
+  margin-bottom: 16px;
+  max-width: 260px;
+}
+
+.favoritesMain-empty-text {
+  font-family: var(--font-inter);
+  font-size: 17px;
+  color: #292928;
+  font-weight: 400;
+  max-width: 300px;
+}

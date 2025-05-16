@@ -1,0 +1,7 @@
+[build]
+  command = "npm ci --legacy-peer-deps && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18.19.0"
+  NPM_CONFIG_LEGACY_PEER_DEPS = "true" 
