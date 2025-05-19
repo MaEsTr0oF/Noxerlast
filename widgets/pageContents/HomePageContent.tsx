@@ -84,7 +84,7 @@ const HomePageContent = observer(() => {
       preventInteractionOnTransition: false,
       autoplay: {
         delay: 4000,
-        disableOnInteraction: false,
+        disableOnInteraction: true,
       },
     };
 
