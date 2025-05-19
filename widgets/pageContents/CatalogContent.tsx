@@ -12,7 +12,7 @@ import Filters from "@/widgets/filters/Filters";
 import Search from "@/shared/Search";
 
 import "@/styles/widgets/catalog.css";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 
 const STORAGE_KEYS = {
   ACTIVE_CATEGORY: "brandbot_active_category",
@@ -54,19 +54,12 @@ const CatalogContent = () => {
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(
-      "URL params:",
-      searchParams ? Object.fromEntries(searchParams.entries()) : {}
-    );
-
     const getHashParam = (name: string) => {
       if (typeof window !== "undefined") {
         const hash = window.location.hash;
-        console.log("Текущий хеш URL:", hash);
         if (hash && hash.includes("?")) {
           const params = new URLSearchParams(hash.split("?")[1]);
           const value = params.get(name);
-          console.log(`Значение параметра ${name} из хеша:`, value);
           return value;
         }
       }
@@ -79,13 +72,9 @@ const CatalogContent = () => {
     const categoryParam = searchParams ? searchParams.get("category") : null;
     const hashCategoryParam = getHashParam("category");
 
-    console.log("Параметр category из URL:", categoryParam);
-    console.log("Параметр category из хеша:", hashCategoryParam);
-
     // Если есть параметр категории в URL, используем его
     if (categoryParam) {
       const categoryId = parseInt(categoryParam, 10);
-      console.log("Установка категории из URL параметра:", categoryId);
       setActiveCategory(categoryId);
       localStorage.setItem(
         STORAGE_KEYS.ACTIVE_CATEGORY,
@@ -93,7 +82,6 @@ const CatalogContent = () => {
       );
     } else if (hashCategoryParam) {
       const categoryId = parseInt(hashCategoryParam, 10);
-      console.log("Установка категории из хеш-параметра:", categoryId);
       setActiveCategory(categoryId);
       localStorage.setItem(
         STORAGE_KEYS.ACTIVE_CATEGORY,
@@ -113,14 +101,8 @@ const CatalogContent = () => {
     // Проверяем параметр tag в хеше URL
     const hashTagParam = getHashParam("tag");
 
-    console.log("Параметр tag из URL:", tagParam);
-    console.log("Параметр tag из хеша:", hashTagParam);
-
     // Обработка URL-параметра tag=sale для фильтрации товаров со скидкой
     if (tagParam === "sale" || hashTagParam === "sale") {
-      console.log(
-        "Обнаружен параметр tag=sale, устанавливаем кастомный тег sale"
-      );
       setActiveCustomTag(["sale"]);
       setShowCustomTags(true);
       localStorage.setItem(
@@ -143,25 +125,6 @@ const CatalogContent = () => {
     setShowTagFilter(getStoredValue(STORAGE_KEYS.SHOW_TAG_FILTER, false));
     setShowSearch(getStoredValue(STORAGE_KEYS.SHOW_SEARCH, false));
     setIsClient(true);
-
-    console.log("Активные фильтры после инициализации:");
-    console.log(
-      "- activeCategory:",
-      getStoredValue(STORAGE_KEYS.ACTIVE_CATEGORY, null)
-    );
-    console.log("- activeTag:", getStoredValue(STORAGE_KEYS.ACTIVE_TAG, null));
-    console.log(
-      "- activeCustomTag:",
-      tagParam === "sale" || hashTagParam === "sale"
-        ? ["sale"]
-        : storedCustomTags
-    );
-    console.log(
-      "- showCustomTags:",
-      tagParam === "sale" || hashTagParam === "sale"
-        ? true
-        : getStoredValue(STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER, false)
-    );
   }, [searchParams]);
 
   const handleSearchChange = (query: string) => {
@@ -201,10 +164,12 @@ const CatalogContent = () => {
         // Если тег уже активен, удаляем его из списка
         newActiveTags = prevActiveTags.filter((t) => t !== tag);
 
+        // Если деактивируем тег "sale", обновляем отображение фильтра тегов
         if (isSaleTag) {
-          console.log("Деактивация тега Sale, перезагрузка доступных тегов");
+          // Деактивация тега Sale
         }
       } else {
+        // Если тег не активен, добавляем его к существующим тегам
         newActiveTags = [...prevActiveTags, tag];
       }
 
@@ -214,6 +179,7 @@ const CatalogContent = () => {
         JSON.stringify(newActiveTags)
       );
 
+      // Автоматически показываем секцию фильтров по тегам, если включен хотя бы один тег
       if (newActiveTags.length > 0 && !showCustomTags) {
         setShowCustomTags(true);
         localStorage.setItem(

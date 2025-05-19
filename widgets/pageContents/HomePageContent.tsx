@@ -21,20 +21,41 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Loading from "@/shared/Loading";
 import { NavLink } from "react-router-dom";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 import { useCategories } from "@/data/categories";
 
 const HomePageContent = observer(() => {
   const [isClient, setIsClient] = useState(false);
   const [reviewsHref, setReviewsHref] = useState("/");
+  const [reviewsButtonText, setReviewsButtonText] = useState("Отзывы");
+  const [reviewsRating, setReviewsRating] = useState("4,9 • 37 000 оценок");
 
   useEffect(() => {
     setIsClient(true);
-    // Set the correct href once data is available on the client
+
+    // Получаем ссылку на отзывы
     const linkValue =
-      dataStore.data?.special_project_parameters?.reviews_link_value;
+      dataStore.data?.special_project_parameters?.reviews_link_value ||
+      dataStore.data?.special_project_parameters
+        ?.main_page_reviews_block_d_value;
     if (linkValue) {
       setReviewsHref(linkValue);
+    }
+
+    // Получаем текст кнопки отзывов
+    const reviewsText =
+      dataStore.data?.special_project_parameters
+        ?.main_page_reviews_block_d_description;
+    if (reviewsText) {
+      setReviewsButtonText(reviewsText);
+    }
+
+    // Получаем текст с рейтингом
+    const ratingText =
+      dataStore.data?.special_project_parameters
+        ?.main_page_reviews_block_d_extra_field_1;
+    if (ratingText) {
+      setReviewsRating(ratingText);
     }
   }, [dataStore.data]);
 
@@ -90,17 +111,14 @@ const HomePageContent = observer(() => {
       <div className="banner">{renderBanner()}</div>
 
       <div className="infoCards">
-        <Link
-          href={reviewsHref} // Use state for href
-          className="reviewsCard click-effect-block"
-        >
-          <p className="reviewsTitle">Отзывы</p>
+        <Link href={reviewsHref} className="reviewsCard click-effect-block">
+          <p className="reviewsTitle">{reviewsButtonText}</p>
 
           <div className="ratingContainer">
             <img src={`${iconsBaseLink}rating-icon.png`} alt="" />
           </div>
 
-          <p className="ratingText">4,9 • 37 000 оценок</p>
+          <p className="ratingText">{reviewsRating}</p>
         </Link>
 
         <NavLink

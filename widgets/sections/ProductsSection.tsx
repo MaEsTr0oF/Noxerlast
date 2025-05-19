@@ -94,9 +94,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
       products: any[],
       filters: string[] | null
     ) => {
-      console.log("filterCustomProducts вызван с фильтрами:", filters);
-      console.log("Всего товаров до фильтрации:", products.length);
-
       if (!filters || filters.length === 0) return products;
 
       const filteredProducts = products.filter((product) => {
@@ -134,10 +131,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
         return matchesSale && matchesOtherTags;
       });
 
-      console.log(
-        "Количество товаров после фильтрации:",
-        filteredProducts.length
-      );
       return filteredProducts;
     };
 
@@ -253,41 +246,26 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
     );
 
     useEffect(() => {
-      console.log("useEffect для фильтрации запущен с параметрами:");
-      console.log("- categoryFilter:", categoryFilter);
-      console.log("- tagFilter:", tagFilter);
-      console.log("- customTagFilter:", customTagFilter);
-      console.log("- searchQuery:", searchQuery);
-      console.log("- importanceFilter:", importanceFilter);
-      console.log("- showOnMainOnly:", showOnMainOnly);
-      console.log("Всего оригинальных товаров:", originalProducts.length);
-
       let result = [...originalProducts] as any[];
 
       if (showOnMainOnly) {
         result = filterOnMainProducts(result);
-        console.log("После фильтрации по OnMain:", result.length);
       }
 
       if (categoryFilter) {
         result = filterProducts(result, categoryFilter);
-        console.log("После фильтрации по категории:", result.length);
       }
 
       if (tagFilter) {
         result = sortProducts(result, tagFilter);
-        console.log("После сортировки по тегу:", result.length);
       }
 
       if (customTagFilter && customTagFilter.length > 0) {
-        console.log("Применяем кастомный фильтр:", customTagFilter);
         result = filterCustomProducts(result, customTagFilter);
-        console.log("После фильтрации по кастомному тегу:", result.length);
       }
 
       if (searchQuery) {
         result = filterBySearchQuery(result, searchQuery);
-        console.log("После фильтрации по поисковому запросу:", result.length);
       }
 
       if (importanceFilter) {
@@ -299,13 +277,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
           if (b.importance_num !== null) return 1;
           return 0;
         });
-        console.log("После сортировки по важности:", result.length);
       }
 
-      console.log(
-        "Итоговое количество товаров после всех фильтраций:",
-        result.length
-      );
       setSortedProducts(result);
     }, [
       originalProducts,
@@ -330,10 +303,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
     useEffect(() => {
       if (isDataLoad) {
         const productsArray = getCorrectArray();
-        console.log(
-          "Количество продуктов для отображения:",
-          productsArray.length
-        );
         setIsLoad(productsArray.length > 0);
       }
     }, [getCorrectArray, isDataLoad]);

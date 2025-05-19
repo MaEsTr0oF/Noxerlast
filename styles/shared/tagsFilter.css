@@ -16,13 +16,17 @@
   height: 53px;
 } */
 
+.tagsFilter-empty-message {
+  display: none;
+}
+
 .tagsFilter-tag {
   display: flex;
   align-items: center;
   gap: 5px;
   padding-left: 12px;
   padding-right: 12px;
-  max-width: 171px;
+  /* max-width: 171px; */
   height: 38px;
   background-color: #ffffff;
   border-radius: 40px;
@@ -41,6 +45,7 @@
   overflow: hidden;
   gap: 5px;
   position: relative; /* Для анимации тегов */
+  padding: 2px 0; /* Добавляем отступ сверху и снизу для активных тегов */
 }
 .custom-tagsFilter-tags--open {
   flex-wrap: wrap;
@@ -49,6 +54,7 @@
   height: 24px;
   background-color: #e7e7e7;
   will-change: transform, opacity, background-color; /* Оптимизация анимации */
+  margin: 1px; /* Добавляем небольшой отступ для всех тегов */
 }
 .custom-tagsFilter .tagsFilter-tag .tagsFilter-tag-count {
   width: 10px;
@@ -65,6 +71,7 @@
   color: #ffffff;
   transform: scale(1.05); /* Небольшое увеличение активного тега */
   z-index: 2; /* Поверх других элементов */
+  margin: 0 3px; /* Увеличиваем отступ для активных тегов */
 }
 .custom-tagsFilter .tagsFilter-tag--active .tagsFilter-tag-count {
   color: #c4c4c1;
@@ -75,7 +82,8 @@
   transition:
     transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     background-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    margin 0.3s ease; /* Добавляем плавный переход для margin */
 }
 
 /* Анимация для тега, который перемещается в начало */

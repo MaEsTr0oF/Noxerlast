@@ -32,7 +32,7 @@ body {
   background-color: #f1f1f1;
 }
 
-img{
+img {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -40,11 +40,11 @@ img{
   -ya-pointer-events: none;
 }
 
-.click-effect-block{
-  transition: transform .2s;
+.click-effect-block {
+  transition: transform 0.2s;
   transform: scale(1);
 }
 
-.click-effect-block:active{
-  transform: scale(.95);
+.click-effect-block:active {
+  transform: scale(0.95);
 }

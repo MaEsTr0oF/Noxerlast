@@ -6,7 +6,7 @@ import ru from "@/messages/ru.json";
 import { dataStore } from "@/store/DataStore";
 import "@/styles/widgets/header.css";
 import { useLocation } from "react-router-dom";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 
 const TheHeader = () => {
   const pathname = usePathname();
@@ -20,8 +20,6 @@ const TheHeader = () => {
 
   useEffect(() => {
     const tgApp = window.Telegram.WebApp;
-    console.log("Version 0.0.32452");
-    console.log(location.pathname);
 
     if (typeof window !== "undefined") {
       if (tgApp) {

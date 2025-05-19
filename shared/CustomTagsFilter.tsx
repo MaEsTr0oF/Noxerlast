@@ -211,10 +211,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
           }
         }
 
-        console.log(
-          `setVisible: ${numTagsToSetVisible}, setInitial: ${countForInitialAndMoreButtonText}`
-        );
-
         setInitialCalculatedTagCount(countForInitialAndMoreButtonText);
         setVisibleTagCount(numTagsToSetVisible);
       };
@@ -236,7 +232,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
         let categoryTags: { [key: string]: number } = {};
 
         if (!dataStore.data?.overall_product_tags_by_category) {
-          console.log("Данные о тегах категорий не найдены");
           setActiveCategoryTags({});
           setIsLoading(false);
           return;
@@ -256,12 +251,10 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
               });
             }
           });
-          console.log("Объединенные теги всех категорий:", categoryTags);
         } else {
           categoryTags =
             dataStore.data.overall_product_tags_by_category[activeCategory] ||
             {};
-          console.log(`Теги для категории ${activeCategory}:`, categoryTags);
         }
 
         // Добавляем специальный тег "Sale" для товаров со скидкой
@@ -296,9 +289,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
                   (cat) => cat.Category_ID === activeCategoryId
                 )
             );
-            console.log(
-              `Фильтрация товаров для категории ${activeCategory}, найдено: ${filteredProducts.length}`
-            );
           }
 
           // Проверяем, есть ли "sale" в активных тегах
@@ -316,7 +306,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
           );
 
           saleItemsCount = saleProducts.length;
-          console.log(`Количество товаров со скидкой: ${saleItemsCount}`);
 
           // Если "sale" активен, перестраиваем список тегов
           if (isSaleActive && saleItemsCount > 0) {
@@ -341,8 +330,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
                 });
               }
             });
-
-            console.log("Теги в товарах со скидкой:", tagsInSaleProducts);
 
             // Заменяем список тегов только на те, которые есть в товарах со скидкой
             categoryTags = tagsInSaleProducts;
@@ -387,7 +374,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     if (Object.keys(activeCategoryTags).length === 0) {
       return (
         <div className="tagsFilter custom-tagsFilter tagsFilter-empty">
-          <Loading />
+          <div className="tagsFilter-empty-message"></div>
         </div>
       );
     }

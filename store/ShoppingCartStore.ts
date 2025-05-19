@@ -37,13 +37,6 @@ export class ShoppingCartStore {
     const colorId = isObject ? cartData.colorId : null;
     const colorImage = isObject ? cartData.colorImage : null;
 
-    console.log("Добавление в корзину:", {
-      id,
-      paramTitle,
-      colorId,
-      colorImage,
-    });
-
     // Проверяем, есть ли уже такой товар в корзине
     const existingItem = this.items.find((item) => {
       const paramMatch =
@@ -51,24 +44,15 @@ export class ShoppingCartStore {
         (!paramTitle || item.parameters?.parameter_string === paramTitle);
       const colorMatch = !colorId || item.selectedColor?.id === colorId;
 
-      console.log(`Проверка существующего товара: ${item.Product_ID}`, {
-        paramMatch,
-        colorMatch,
-        existingColorId: item.selectedColor?.id,
-        newColorId: colorId,
-      });
-
       return paramMatch && colorMatch;
     });
 
     if (existingItem) {
-      console.log("Товар уже в корзине, увеличиваем количество");
       this.increaseQuantity(existingItem.Product_ID, paramTitle, colorId);
       return;
     }
 
     if (!dataStore.data || !dataStore.data.products) {
-      console.error("Данные о продуктах не загружены из dataStore.");
       return;
     }
 
@@ -77,7 +61,6 @@ export class ShoppingCartStore {
     );
 
     if (!baseProduct) {
-      console.error(`Продукт с ID ${id} не найден в dataStore.`);
       return;
     }
 
@@ -141,8 +124,6 @@ export class ShoppingCartStore {
       quantity: 1,
     };
 
-    console.log("Добавлен новый товар в корзину:", productToAdd);
-
     runInAction(() => {
       this.items = [...this.items, productToAdd];
     });
@@ -167,7 +148,6 @@ export class ShoppingCartStore {
   }
 
   clearCart() {
-    console.log("Очистка корзины");
     runInAction(() => {
       this.items = [];
     });
@@ -175,7 +155,6 @@ export class ShoppingCartStore {
     // Очищаем также элементы из localStorage, связанные с корзиной
     if (typeof window !== "undefined") {
       localStorage.removeItem("addedSettingItems");
-      console.log("Локальное хранилище очищено");
     }
   }
 

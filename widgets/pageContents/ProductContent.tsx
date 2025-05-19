@@ -23,7 +23,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Loading from "@/shared/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 import { getTagBackground } from "@/utils/getTagBackground";
 import { getTagLabel } from "@/utils/getTagLabel";
 import VideoReview from "@/entities/VideoReview";
@@ -39,7 +39,6 @@ const ProductContent = observer(() => {
 
   useEffect(() => {
     if (params.productId) {
-      console.log(productId);
       setProductId(params.productId);
     }
   }, [params]);
@@ -136,10 +135,6 @@ const ProductContent = observer(() => {
     setSelectedParams(updatedParams);
     setCurrentSettingsItems([settingItem]);
 
-    console.log(
-      `Выбран параметр: ${paramName}, значение: ${settingItem.title}`
-    );
-
     // Проверяем, есть ли в корзине товар с таким параметром
     updateAddingToCartState(
       targetProduct.Product_ID,
@@ -182,10 +177,6 @@ const ProductContent = observer(() => {
     // Обновляем состояние
     setSelectedParams(updatedParams);
 
-    console.log(
-      `Выбран цвет: ${color.Color_Name}, ID: ${color.Color_ID}, изображение: ${color.Color_image || "нет"}`
-    );
-
     // Проверяем, есть ли в корзине товар с выбранным параметром и цветом
     const currentParam = currentSettingsItems[0];
     updateAddingToCartState(
@@ -213,7 +204,6 @@ const ProductContent = observer(() => {
     if (!targetProduct?.Product_ID) return;
 
     if (isAddingToCart) {
-      console.log("Переходим в корзину из:", location.pathname);
       // Для большей надежности можно установить хэш вручную
       window.location.hash = "#/shoppingcart";
       // Если выше не сработает, то используем navigate
@@ -270,7 +260,6 @@ const ProductContent = observer(() => {
 
     // Добавляем товар в корзину
     shoppingCartStore.addToCart(targetProduct.Product_ID, cartData);
-    console.log("Товар добавлен в корзину:", cartData);
 
     // Сохраняем информацию о выбранном параметре для отслеживания состояния кнопки
     const selectedParamData = {
@@ -288,8 +277,6 @@ const ProductContent = observer(() => {
       JSON.stringify([...addedSettingItems, selectedParamData])
     );
     setIsAddingToCart(true);
-
-    console.log("Сохранено в localStorage:", selectedParamData);
   }
 
   function handleViewAllReviews() {
@@ -398,7 +385,6 @@ const ProductContent = observer(() => {
       try {
         setAddedSettingItems(JSON.parse(savedItems));
       } catch (error) {
-        console.error("Ошибка при парсинге данных из localStorage:", error);
         setAddedSettingItems([]);
       }
     }
@@ -473,30 +459,18 @@ const ProductContent = observer(() => {
   useEffect(() => {
     setIsLoading(true);
     try {
-      console.log("ID продукта:", productId);
       const product = dataStore.data?.products?.find(
         (product: any) => product?.Product_ID === Number(productId)
       );
-
-      console.log("Найденный продукт:", product);
 
       if (!product) {
         setIsError(true);
       } else {
         setIsError(false);
         setTargetProduct(product);
-        console.log("Детали продукта:", {
-          images: product.images,
-          parameters: product.parameters,
-          hasColorsArray: !!product.colors?.length,
-          parametersWithImages:
-            product.parameters?.filter((p: any) => p.extra_field_image)
-              .length || 0,
-        });
         setIsLoading(false);
       }
     } catch (error) {
-      console.error("Ошибка при получении данных продукта:", error);
       setIsError(true);
     }
   }, [productId, dataStore.data]);
@@ -644,9 +618,6 @@ const ProductContent = observer(() => {
                 src={mainImageUrl}
                 alt={`Изображение товара ${targetProduct.Product_Name || "Товар"}`}
                 onError={(e) => {
-                  console.error(
-                    `Ошибка загрузки изображения цвета: ${mainImageUrl}`
-                  );
                   e.currentTarget.src = "/placeholder-image.jpg";
                   // Если изображение цвета не загрузилось, сбрасываем mainImageUrl
                   setMainImageUrl(null);
@@ -664,16 +635,10 @@ const ProductContent = observer(() => {
                 // Собираем все изображения
                 let allImages = [...(rawProduct.images || [])];
 
-                console.log("Основные изображения:", allImages);
-
                 // Добавляем изображения из параметров
                 if (rawProduct.parameters) {
                   rawProduct.parameters.forEach((param: any) => {
                     if (param.extra_field_image) {
-                      console.log(
-                        `Добавляем изображение из параметра: ${param.parameter_string}`,
-                        param.extra_field_image
-                      );
                       allImages.push({
                         Image_ID: `param-${param.Parameter_ID}`,
                         Image_URL: param.extra_field_image,
@@ -685,8 +650,6 @@ const ProductContent = observer(() => {
                     }
                   });
                 }
-
-                console.log("Все изображения для слайдера:", allImages);
 
                 // Если нет изображений, показываем заглушку
                 if (allImages.length === 0) {
@@ -710,9 +673,6 @@ const ProductContent = observer(() => {
                         src={allImages[0].Image_URL}
                         alt={`Изображение товара ${rawProduct.Product_Name || "Товар"}`}
                         onError={(e) => {
-                          console.error(
-                            `Ошибка загрузки изображения: ${allImages[0].Image_URL}`
-                          );
                           e.currentTarget.src = "/placeholder-image.jpg";
                         }}
                       />
@@ -731,12 +691,6 @@ const ProductContent = observer(() => {
                     }}
                     className="product-slider"
                     onInit={(swiper) => {
-                      console.log(
-                        "Swiper инициализирован с",
-                        swiper.slides.length,
-                        "слайдами"
-                      );
-                      // Принудительное обновление для уверенности
                       setTimeout(() => swiper.update(), 100);
                     }}
                   >
@@ -750,9 +704,6 @@ const ProductContent = observer(() => {
                             src={image.Image_URL}
                             alt={`Изображение товара ${rawProduct.Product_Name || "Товар"} ${image.from_parameter ? `(${image.parameter_name})` : ""}`}
                             onError={(e) => {
-                              console.error(
-                                `Ошибка загрузки изображения: ${image.Image_URL}`
-                              );
                               e.currentTarget.src = "/placeholder-image.jpg";
                             }}
                           />
@@ -762,7 +713,6 @@ const ProductContent = observer(() => {
                   </Swiper>
                 );
               } catch (error) {
-                console.error("Ошибка при рендеринге слайдера:", error);
                 return (
                   <div className="swiper-slide-content">
                     <img

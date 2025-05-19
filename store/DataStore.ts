@@ -62,7 +62,6 @@ export class DataStore {
       runInAction(() => {
         this.data = response.data;
         this.lastUpdated = Date.now();
-        console.log(response.data)
 
         // Генерируем событие обновления данных для компонентов
         if (typeof window !== "undefined") {
@@ -70,14 +69,12 @@ export class DataStore {
         }
       });
 
-      console.log("Данные обновлены из API:", this.lastUpdated);
       return true;
     } catch (error) {
       runInAction(() => {
         this.error =
           error instanceof Error ? error.message : "Неизвестная ошибка";
       });
-      console.error("Ошибка при обновлении данных:", this.error);
       return false;
     }
   }

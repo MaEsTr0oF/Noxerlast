@@ -9,31 +9,11 @@ import ProductsSection from "@/widgets/sections/ProductsSection";
 
 import "@/styles/widgets/favorites.css";
 import Loading from "@/shared/Loading";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 
 const FavoritesContent = observer(() => {
   const hasFavorites = favoritesStore.favoritesIds.length > 0;
-  const [limit, setLimit] = useState(100);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Установка начального значения limit в зависимости от ширины экрана
-    const updateLimit = () => {
-      setLimit(window.innerWidth >= 480 ? 3 : 2);
-    };
-
-    // Установка начального значения
-    updateLimit();
-
-    // Добавление слушателя событий изменения размера окна
-    window.addEventListener("resize", updateLimit);
-
-    // Очистка слушателя при размонтировании компонента
-    return () => {
-      window.removeEventListener("resize", updateLimit);
-    };
-  }, []);
-
   useEffect(() => {
     setIsLoading(!!favoritesStore);
   }, [hasFavorites]);
@@ -46,7 +26,7 @@ const FavoritesContent = observer(() => {
     >
       {isLoading ? (
         hasFavorites ? (
-          <ProductsSection isFavorites={true} limit={limit} />
+          <ProductsSection isFavorites={true} />
         ) : (
           <div className="favoritesMain-empty">
             <h2 className="favoritesMain-empty-title">

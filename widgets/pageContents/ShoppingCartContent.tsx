@@ -18,7 +18,7 @@ import MaskedInput from "react-text-mask";
 import "@/styles/widgets/shoppingCart.css";
 import Loading from "@/shared/Loading";
 import { NavLink } from "react-router-dom";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 
 // Компонент всплывающего окна для отображения ошибок формы
 const FormErrorModal = ({
@@ -725,13 +725,6 @@ const ShoppingCartContent = observer(() => {
         try {
           const items = JSON.parse(addedSettingItems);
 
-          console.log("Удаление из локального хранилища", {
-            productId,
-            productTitle,
-            colorId,
-          });
-          console.log("Текущие элементы в localStorage:", items);
-
           // Находим параметр в корзине, чтобы получить его ID
           const product = shoppingCartStore.items.find(
             (item) =>
@@ -745,14 +738,6 @@ const ShoppingCartContent = observer(() => {
             const paramId = product.parameters?.Parameter_ID;
             const productColorId = product.selectedColor?.id;
 
-            console.log("Найден товар для удаления:", {
-              productId,
-              paramId,
-              productColorId,
-              itemParams: product.parameters,
-              itemColor: product.selectedColor,
-            });
-
             // Фильтруем элементы, сохраняя те, которые не соответствуют удаляемому товару
             const filteredItems = items.filter((item: any) => {
               // Проверка параметров и цвета товара
@@ -765,30 +750,13 @@ const ShoppingCartContent = observer(() => {
               const keepItem =
                 differentProduct || differentParam || differentColor;
 
-              console.log(`Проверка элемента #${item.productId}:`, {
-                differentProduct,
-                differentParam,
-                differentColor,
-                keepItem,
-              });
-
               // Оставляем элемент, если это другой товар или другие параметры/цвет
               return keepItem;
             });
 
-            console.log("Отфильтрованные элементы:", filteredItems);
-
             localStorage.setItem(
               "addedSettingItems",
               JSON.stringify(filteredItems)
-            );
-
-            console.log(
-              `Товар с ID ${productId}, параметром ${paramId || "без параметра"} ${productColorId ? `и цветом ID ${productColorId}` : ""} удален из localStorage`
-            );
-          } else {
-            console.log(
-              `Не найден товар с ID ${productId}, параметром "${productTitle}" ${colorId ? `и цветом ID ${colorId}` : ""} в корзине`
             );
           }
         } catch (error) {
@@ -804,12 +772,6 @@ const ShoppingCartContent = observer(() => {
     parameterString?: string,
     colorId?: number
   ) => {
-    console.log(`Удаление товара "${productName}" из корзины:`, {
-      productId,
-      parameterString,
-      colorId,
-    });
-
     // Удаляем товар из локального хранилища
     removeFromLocalStorage(productId, parameterString || "", colorId);
 
@@ -831,16 +793,9 @@ const ShoppingCartContent = observer(() => {
         // Оставляем товар, если он не соответствует условиям удаления
         return !shouldRemove;
       });
-
-      console.log(
-        `Удалено ${initialCount - shoppingCartStore.items.length} товаров из корзины`
-      );
     });
 
     const colorInfo = colorId ? ` и цветом ID: ${colorId}` : "";
-    console.log(
-      `Товар "${productName}" ${parameterString ? `(${parameterString})` : ""}${colorInfo} с ID ${productId} удален из корзины`
-    );
   };
 
   const validateForm = () => {
@@ -911,8 +866,6 @@ const ShoppingCartContent = observer(() => {
   };
 
   const handleContactClick = () => {
-    console.log("Клик по контакту с менеджером");
-
     // Очищаем корзину, форму и localStorage при клике на ссылку менеджера
     resetForm();
     shoppingCartStore.clearCart();
@@ -923,7 +876,6 @@ const ShoppingCartContent = observer(() => {
     try {
       // Проверяем, существует ли объект Telegram
       if (window.Telegram && window.Telegram.WebApp) {
-        console.log("Используем Telegram WebApp для открытия ссылки");
         // Безопасно пытаемся вызвать метод
         const managerContact =
           dataStore.data?.special_project_parameters
@@ -934,14 +886,8 @@ const ShoppingCartContent = observer(() => {
           window.Telegram.WebApp.openLink(`https://t.me/${cleanContact}`);
           return false; // Предотвращаем стандартное поведение ссылки
         }
-      } else {
-        console.log(
-          "Telegram WebApp не найден, продолжаем стандартным способом"
-        );
-        // Продолжаем стандартным способом
       }
     } catch (error) {
-      console.error("Ошибка при попытке использовать Telegram WebApp:", error);
       // Ошибки не останавливают выполнение
     }
   };
@@ -966,7 +912,6 @@ const ShoppingCartContent = observer(() => {
     }
 
     setIsSubmitting(true);
-    console.log("Оформление заказа...");
 
     // Фильтруем айтемы для заказа
     const itemsForOrder = shoppingCartStore.items
@@ -1016,8 +961,6 @@ const ShoppingCartContent = observer(() => {
       return productData;
     });
 
-    console.log("Товары для API:", productsForApi);
-
     // Создаем объект заказа с только необходимыми данными
     const orderData = {
       tg_user_id:
@@ -1033,8 +976,6 @@ const ShoppingCartContent = observer(() => {
       products: productsForApi,
     };
 
-    console.log("Отправка заказа:", JSON.stringify(orderData, null, 2));
-
     // Сохраняем данные текущего заказа для возможности повторной отправки
     setCurrentOrderData(orderData);
 
@@ -1043,9 +984,7 @@ const ShoppingCartContent = observer(() => {
       setIsLoading(true);
 
       // Отправляем заказ на API
-      console.log("Отправка заказа на API...");
       const response = await apiInstance.post("/order", orderData);
-      console.log("Ответ API:", response.data);
 
       // Сохраняем информацию о товарах заказа для отображения в модальном окне
       const productsForOrder = [...shoppingCartStore.items];
@@ -1058,7 +997,6 @@ const ShoppingCartContent = observer(() => {
       runInAction(() => {
         shoppingCartStore.items = [];
         localStorage.removeItem("addedSettingItems");
-        console.log("Корзина очищена после оформления заказа");
       });
 
       // Показываем модальное окно успеха
@@ -1068,8 +1006,6 @@ const ShoppingCartContent = observer(() => {
       setIsLoading(false);
       setIsSubmitting(false);
     } catch (error) {
-      console.error("Ошибка при размещении заказа:", error);
-
       // Получаем сообщение об ошибке из ответа API (если есть)
       let errorMessage =
         "Не удалось отправить заказ. Пожалуйста, попробуйте позже.";
@@ -1078,7 +1014,6 @@ const ShoppingCartContent = observer(() => {
 
       if (axiosError.response) {
         // Ошибка от сервера
-        console.error("Ошибка ответа от сервера:", axiosError.response.data);
         if (
           axiosError.response.data &&
           typeof axiosError.response.data === "object" &&
@@ -1096,7 +1031,6 @@ const ShoppingCartContent = observer(() => {
         }
       } else if (axiosError.request) {
         // Запрос был отправлен, но нет ответа
-        console.error("Нет ответа от сервера:", axiosError.request);
         errorMessage =
           "Сервер не отвечает. Пожалуйста, проверьте ваше соединение с интернетом.";
       }
@@ -1118,8 +1052,6 @@ const ShoppingCartContent = observer(() => {
           localStorage.removeItem(key);
         }
       });
-
-      console.log("LocalStorage очищен, кроме первых трех ключей");
     }
   };
 
@@ -1146,12 +1078,10 @@ const ShoppingCartContent = observer(() => {
 
     try {
       // Отправляем заказ на API повторно
-      console.log("Повторная отправка заказа на API...");
       const response = await axios.post(
         "https://noxer-ai.ru/api/orders",
         currentOrderData
       );
-      console.log("Ответ API:", response.data);
 
       // Сохраняем ответ от API
       setOrderResponse(response.data);
@@ -1160,7 +1090,6 @@ const ShoppingCartContent = observer(() => {
       runInAction(() => {
         shoppingCartStore.items = [];
         localStorage.removeItem("addedSettingItems");
-        console.log("Корзина очищена после оформления заказа");
       });
 
       // Показываем модальное окно успеха
@@ -1173,15 +1102,12 @@ const ShoppingCartContent = observer(() => {
       setCurrentOrderData(null);
     } catch (error) {
       // Обработка ошибок осталась такой же, как в основной функции handleMakeOrder
-      console.error("Ошибка при повторной отправке заказа:", error);
-
       let errorMessage =
         "Не удалось отправить заказ. Пожалуйста, попробуйте позже.";
 
       const axiosError = error as AxiosError;
 
       if (axiosError.response) {
-        console.error("Ошибка ответа от сервера:", axiosError.response.data);
         if (
           axiosError.response.data &&
           typeof axiosError.response.data === "object" &&
@@ -1198,7 +1124,6 @@ const ShoppingCartContent = observer(() => {
             "Внутренняя ошибка сервера. Пожалуйста, попробуйте позже.";
         }
       } else if (axiosError.request) {
-        console.error("Нет ответа от сервера:", axiosError.request);
         errorMessage =
           "Сервер не отвечает. Пожалуйста, проверьте ваше соединение с интернетом.";
       }

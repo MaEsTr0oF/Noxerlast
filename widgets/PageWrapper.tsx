@@ -5,7 +5,7 @@ import "@/styles/widgets/pageWrapper.css";
 import TheHeader from "@/widgets/header/TheHeader";
 import TheFooter from "@/widgets/footer/TheFooter";
 import { useLocation } from "react-router-dom";
-import { detectIOS } from "@/utils/detectPlatform";
+import { detectIOS } from "@/utils/detectIOS";
 import { dataStore } from "@/store/DataStore";
 
 const PageWrapper: React.FC<{ children: any }> = ({ children }) => {
