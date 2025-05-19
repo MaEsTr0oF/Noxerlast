@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSearchParams } from "next/navigation";
 
@@ -37,15 +37,44 @@ const Filters: React.FC<FiltersProps> = ({
   handleCustomTagChange,
 }) => {
   const searchParams = useSearchParams();
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
+  // Обработка URL-параметров при первой загрузке
   useEffect(() => {
-    if (searchParams && searchParams.get("tag")) {
-      setActiveTag(searchParams.get("tag")!);
+    if (initialLoadDone) return;
+
+    const tagParam = searchParams?.get("tag");
+    const categoryParam = searchParams?.get("category");
+
+    // Обрабатываем параметр tag
+    if (tagParam) {
+      if (tagParam.toLowerCase() === "sale") {
+        // Если это тег sale, добавляем его в activeCustomTag
+        if (!activeCustomTag.includes("sale")) {
+          handleCustomTagChange("sale");
+        }
+      } else {
+        // Для других тегов используем обычный обработчик
+        setActiveTag(tagParam);
+      }
     }
-    if (searchParams && searchParams.get("category")) {
-      setActiveCategory(Number(searchParams.get("category")));
+
+    // Обрабатываем параметр category
+    if (categoryParam) {
+      const categoryId = Number(categoryParam);
+      setActiveCategory(categoryId);
     }
-  }, []);
+
+    setInitialLoadDone(true);
+  }, [
+    searchParams,
+    setActiveTag,
+    setActiveCategory,
+    handleCustomTagChange,
+    activeCustomTag,
+    initialLoadDone,
+  ]);
+
   return (
     <>
       <div

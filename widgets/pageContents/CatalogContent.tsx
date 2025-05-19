@@ -117,9 +117,22 @@ const CatalogContent = () => {
       setActiveCustomTag(
         Array.isArray(storedCustomTags) ? storedCustomTags : []
       );
+      // Если есть активные кастомные теги, всегда показываем фильтр
+      const hasActiveCustomTags =
+        Array.isArray(storedCustomTags) && storedCustomTags.length > 0;
       setShowCustomTags(
-        getStoredValue(STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER, false)
+        hasActiveCustomTags ||
+          getStoredValue(STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER, false)
       );
+
+      // Если есть параметр категории, автоматически показываем фильтр тегов
+      if (categoryParam || hashCategoryParam) {
+        setShowCustomTags(true);
+        localStorage.setItem(
+          STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER,
+          JSON.stringify(true)
+        );
+      }
     }
 
     setShowTagFilter(getStoredValue(STORAGE_KEYS.SHOW_TAG_FILTER, false));

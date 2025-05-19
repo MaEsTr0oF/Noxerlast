@@ -20,11 +20,9 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     }>({});
     const [isLoading, setIsLoading] = useState(true);
     const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [visibleTagCount, setVisibleTagCount] = useState(0);
-    const [initialCalculatedTagCount, setInitialCalculatedTagCount] =
-      useState(0);
     const [allTagsAreVisible, setAllTagsAreVisible] = useState(false);
-    const [tagWidths, setTagWidths] = useState<number[]>([]);
     const [movingTag, setMovingTag] = useState<string | null>(null);
     const [animating, setAnimating] = useState(false);
 
@@ -59,171 +57,32 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       }
     };
 
+    // Функция для прокрутки к активному тегу
+    const scrollToActiveTag = () => {
+      if (!isClient || !containerRef.current || activeCustomTag.length === 0)
+        return;
+
+      // Находим индекс первого активного тега
+      const activeTagIndex = Object.keys(activeCategoryTags).findIndex((tag) =>
+        activeCustomTag.includes(tag)
+      );
+
+      if (activeTagIndex !== -1 && tagRefs.current[activeTagIndex]) {
+        const activeTagElement = tagRefs.current[activeTagIndex];
+        if (activeTagElement) {
+          // Прокручиваем к активному тегу
+          activeTagElement.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      }
+    };
+
     useEffect(() => {
       setIsClient(true);
     }, []);
-
-    // useEffect для измерения ширин тегов
-    useEffect(() => {
-      if (
-        !isClient ||
-        isLoading ||
-        Object.keys(activeCategoryTags).length === 0
-      ) {
-        if (Object.keys(activeCategoryTags).length === 0) {
-          setTagWidths([]);
-        }
-        return;
-      }
-
-      const measureTagWidths = () => {
-        const currentTotalTags = Object.keys(activeCategoryTags).length;
-        let allRefsAvailable = tagRefs.current.length >= currentTotalTags;
-        if (allRefsAvailable) {
-          for (let i = 0; i < currentTotalTags; i++) {
-            if (!tagRefs.current[i]) {
-              allRefsAvailable = false;
-              break;
-            }
-          }
-        }
-
-        if (allRefsAvailable) {
-          const newWidths = Array(currentTotalTags);
-          for (let i = 0; i < currentTotalTags; i++) {
-            newWidths[i] = tagRefs.current[i]!.offsetWidth;
-          }
-          setTagWidths(newWidths);
-        } else {
-        }
-      };
-
-      const measurementTimeoutId = setTimeout(measureTagWidths, 50);
-
-      return () => clearTimeout(measurementTimeoutId);
-    }, [isClient, isLoading, activeCategoryTags]);
-
-    useEffect(() => {
-      if (
-        !isClient ||
-        typeof window === "undefined" ||
-        isLoading ||
-        Object.keys(activeCategoryTags).length === 0 ||
-        tagWidths.length === 0 ||
-        tagWidths.length !== Object.keys(activeCategoryTags).length
-      ) {
-        return;
-      }
-
-      const calculateMaxTags = () => {
-        let currentViewportWidth = window.innerWidth;
-        const maxContainerWidth = 600;
-        const moreButtonWidth = 37;
-        const tagMargin = 5;
-
-        if (currentViewportWidth > maxContainerWidth) {
-          currentViewportWidth = maxContainerWidth;
-        }
-
-        const tagsEntries = Object.entries(activeCategoryTags);
-        const totalTags = tagsEntries.length;
-
-        if (totalTags === 0) {
-          setInitialCalculatedTagCount(0);
-          setVisibleTagCount(0);
-          return;
-        }
-
-        const countFittingTags = (
-          availableWidth: number,
-          maxTagsToConsider: number = totalTags
-        ): number => {
-          let fitCount = 0;
-          let currentWidthSum = 0;
-          for (let i = 0; i < maxTagsToConsider; i++) {
-            const tagWidth = tagWidths[i];
-            if (typeof tagWidth === "number") {
-              const widthWithMargin = tagWidth + (fitCount > 0 ? tagMargin : 0);
-              if (currentWidthSum + widthWithMargin <= availableWidth) {
-                currentWidthSum += widthWithMargin;
-                fitCount++;
-              } else {
-                break;
-              }
-            } else {
-              break;
-            }
-          }
-          return fitCount;
-        };
-
-        let numTagsToSetVisible = 0;
-        let countForInitialAndMoreButtonText = 0;
-
-        if (allTagsAreVisible) {
-          numTagsToSetVisible = totalTags;
-          let baseFitForHiddenState = countFittingTags(currentViewportWidth);
-          if (baseFitForHiddenState < totalTags) {
-            const spaceForMoreBtn =
-              moreButtonWidth +
-              (countFittingTags(currentViewportWidth - moreButtonWidth) > 0
-                ? tagMargin
-                : 0);
-            let fitWithMoreBtnInHiddenState = countFittingTags(
-              currentViewportWidth - spaceForMoreBtn
-            );
-            countForInitialAndMoreButtonText =
-              fitWithMoreBtnInHiddenState > 0
-                ? fitWithMoreBtnInHiddenState
-                : baseFitForHiddenState;
-          } else {
-            countForInitialAndMoreButtonText = baseFitForHiddenState;
-          }
-        } else {
-          let tagsFittingWithoutMoreBtn =
-            countFittingTags(currentViewportWidth);
-
-          if (tagsFittingWithoutMoreBtn < totalTags) {
-            const spaceRequiredForMoreButton =
-              moreButtonWidth +
-              (countFittingTags(currentViewportWidth - moreButtonWidth) > 0
-                ? tagMargin
-                : 0);
-
-            let tagsFittingWithMoreBtnPlaceholder = countFittingTags(
-              currentViewportWidth - spaceRequiredForMoreButton
-            );
-
-            if (tagsFittingWithMoreBtnPlaceholder > 0) {
-              numTagsToSetVisible = tagsFittingWithMoreBtnPlaceholder;
-              countForInitialAndMoreButtonText =
-                tagsFittingWithMoreBtnPlaceholder;
-            } else if (tagsFittingWithoutMoreBtn > 0) {
-              numTagsToSetVisible = tagsFittingWithoutMoreBtn;
-              countForInitialAndMoreButtonText = tagsFittingWithoutMoreBtn;
-            } else {
-              numTagsToSetVisible = 0;
-              countForInitialAndMoreButtonText = 0;
-            }
-          } else {
-            numTagsToSetVisible = tagsFittingWithoutMoreBtn;
-            countForInitialAndMoreButtonText = tagsFittingWithoutMoreBtn;
-          }
-        }
-
-        setInitialCalculatedTagCount(countForInitialAndMoreButtonText);
-        setVisibleTagCount(numTagsToSetVisible);
-      };
-
-      const timerId = setTimeout(calculateMaxTags, 50);
-
-      window.addEventListener("resize", calculateMaxTags);
-
-      return () => {
-        clearTimeout(timerId);
-        window.removeEventListener("resize", calculateMaxTags);
-      };
-    }, [isClient, activeCategoryTags, isLoading, allTagsAreVisible, tagWidths]);
 
     useEffect(() => {
       if (!isClient) return;
@@ -343,17 +202,50 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
         setActiveCategoryTags(categoryTags);
         setIsLoading(false);
 
-        if (categoryTags && Object.keys(categoryTags).length > 0) {
+        // Если есть активные теги, делаем все теги видимыми, чтобы активные теги были видны
+        if (activeCustomTag.length > 0) {
+          setAllTagsAreVisible(true);
+          setVisibleTagCount(Object.keys(categoryTags).length);
+        } else if (categoryTags && Object.keys(categoryTags).length > 0) {
           setVisibleTagCount(Object.keys(categoryTags).length);
         } else {
           setVisibleTagCount(0);
         }
-        setAllTagsAreVisible(false);
-        setInitialCalculatedTagCount(0);
       }, 500);
 
       return () => clearTimeout(timer);
     }, [activeCategory, dataStore.data, isClient, activeCustomTag]);
+
+    // Добавляем эффект для отслеживания изменений в активных тегах
+    useEffect(() => {
+      if (
+        !isClient ||
+        isLoading ||
+        Object.keys(activeCategoryTags).length === 0
+      )
+        return;
+
+      // Если есть активные теги, делаем все теги видимыми
+      if (activeCustomTag.length > 0) {
+        setAllTagsAreVisible(true);
+        setVisibleTagCount(Object.keys(activeCategoryTags).length);
+
+        // Прокручиваем к активному тегу после небольшой задержки,
+        // чтобы дать время для рендеринга
+        setTimeout(() => {
+          scrollToActiveTag();
+        }, 300);
+      }
+    }, [activeCustomTag, isClient, isLoading, activeCategoryTags]);
+
+    // Эффект для прокрутки к активному тегу после полной загрузки компонента
+    useEffect(() => {
+      if (isClient && !isLoading && activeCustomTag.length > 0) {
+        setTimeout(() => {
+          scrollToActiveTag();
+        }, 500);
+      }
+    }, [isClient, isLoading]);
 
     if (!isClient) {
       return (
@@ -374,7 +266,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     if (Object.keys(activeCategoryTags).length === 0) {
       return (
         <div className="tagsFilter custom-tagsFilter tagsFilter-empty">
-          <div className="tagsFilter-empty-message"></div>
+          <div className="tagsFilter-empty-message">Нет доступных тегов</div>
         </div>
       );
     }
@@ -393,26 +285,14 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       return 0;
     });
 
-    const tagsToDisplay = allTagsArray.slice(
-      0,
-      visibleTagCount === 0 &&
-        !allTagsAreVisible &&
-        initialCalculatedTagCount === 0
-        ? 0
-        : visibleTagCount
-    );
-    const showMoreButton =
-      !allTagsAreVisible &&
-      allTagsArray.length > initialCalculatedTagCount &&
-      initialCalculatedTagCount > 0;
-    const showHideButton =
-      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
+    const tagsToDisplay = allTagsAreVisible ? allTagsArray : allTagsArray;
+
+    const showMoreButton = false; // Убираем кнопку "Ещё", так как теперь используем слайдер
+    const showHideButton = false; // Убираем кнопку "Скрыть"
 
     return (
       <div className="tagsFilter custom-tagsFilter">
-        <div
-          className={`custom-tagsFilter-tags ${showHideButton ? "custom-tagsFilter-tags--open" : ""}`}
-        >
+        <div ref={containerRef} className="slider-container">
           {tagsToDisplay.map(([tagName, count], index) => (
             <div
               key={index}
@@ -420,7 +300,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
                 tagRefs.current[index] = el;
               }}
               suppressHydrationWarning
-              className={`tagsFilter-tag 
+              className={`tagsFilter-tag slider-item
                 ${activeCustomTag.includes(tagName) ? "tagsFilter-tag--active" : ""} 
                 ${tagName.toLowerCase() === "sale" ? "tagsFilter-tag--sale" : ""}
                 ${movingTag === tagName ? "tagsFilter-tag--moving-front" : ""}
@@ -461,30 +341,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
               </p>
             </div>
           ))}
-
-          {showHideButton && (
-            <button
-              className=" tagsFilter-hideButton"
-              onClick={() => {
-                setAllTagsAreVisible(false);
-                setVisibleTagCount(initialCalculatedTagCount);
-              }}
-            >
-              <p>Скрыть</p>
-            </button>
-          )}
         </div>
-        {showMoreButton && (
-          <button
-            className="tagsFilter-moreButton"
-            onClick={() => {
-              setAllTagsAreVisible(true);
-              setVisibleTagCount(allTagsArray.length);
-            }}
-          >
-            <p> Ещё ({allTagsArray.length - initialCalculatedTagCount})</p>
-          </button>
-        )}
       </div>
     );
   }

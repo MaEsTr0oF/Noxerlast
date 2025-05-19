@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useCategories } from "@/data/categories";
-
-import Slider from "@/shared/Slider";
 
 import "@/styles/shared/categoryFilter.css";
 
@@ -24,14 +22,57 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
 }) => {
   // Получаем актуальные данные категорий с помощью хука
   const categories = useCategories();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Функция для прокрутки к активной категории
+  const scrollToActiveCategory = () => {
+    if (!isClient || !containerRef.current || activeCategory === null) return;
+
+    const activeCategoryIndex = categories.findIndex(
+      (category) => category.Category_ID === activeCategory
+    );
+
+    if (
+      activeCategoryIndex !== -1 &&
+      categoryRefs.current[activeCategoryIndex]
+    ) {
+      const activeCategoryElement = categoryRefs.current[activeCategoryIndex];
+      if (activeCategoryElement) {
+        // Прокручиваем к активной категории
+        activeCategoryElement.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }
+  };
+
+  // Эффект для прокрутки к активной категории после загрузки
+  useEffect(() => {
+    if (isClient && activeCategory !== null) {
+      setTimeout(() => {
+        scrollToActiveCategory();
+      }, 300);
+    }
+  }, [isClient, activeCategory]);
 
   return (
     <div className="categoryFilter">
-      <Slider height={"38px"}>
-        {categories.map((category: Category) => (
+      <div ref={containerRef} className="slider-container">
+        {categories.map((category: Category, index) => (
           <div
             key={category.Category_ID}
-            className={`categoryFilter-tag ${activeCategory === category.Category_ID ? "categoryFilter-tag--active" : ""}`}
+            ref={(el) => {
+              categoryRefs.current[index] = el;
+            }}
+            className={`categoryFilter-tag slider-item ${activeCategory === category.Category_ID ? "categoryFilter-tag--active" : ""}`}
             onClick={() => onCategoryChange(category.Category_ID)}
           >
             <img src={category.Category_Image} alt="" />
@@ -72,7 +113,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
             )}
           </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 };
