@@ -1,24 +1,23 @@
 .slider-container {
-  position: relative;
-  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  box-sizing: border-box;
   align-items: center;
   width: 100%;
   height: 38px;
-  scroll-behavior: smooth;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  display: flex;
+  position: relative;
+  overflow: scroll hidden;
+  padding: 0 10px;
 }
-.slider-container{
-  box-sizing: border-box;
-}
-.slider-container .slider-content .slider-item:last-child > * {
+
+/* .slider-container .slider-content .slider-item:last-child > * {
   margin-right: 10px !important;
 }
 .slider-container .slider-content .slider-item:first-child > * {
   margin-left: 10px !important;
-}
+} */
 
 .slider-content {
   display: flex;
@@ -34,17 +33,47 @@
 .slider-item {
   flex: 0 0 auto;
   height: 100%;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
 
+/* Градиенты для индикации прокрутки */
+/* .slider-container::before,
+.slider-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 3;
+  pointer-events: none;
+} */
 
+/* .slider-container::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(241, 241, 241, 1),
+    rgba(241, 241, 241, 0)
+  );
+}
+
+.slider-container::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(241, 241, 241, 1),
+    rgba(241, 241, 241, 0)
+  );
+} */
+
+/* Скрываем полосу прокрутки для Chrome, Safari и Opera */
 .slider-container::-webkit-scrollbar {
   display: none;
 }
 
+/* Дополнительные стили для IE и Edge */
 .slider-container {
   -ms-overflow-style: none;
-  scrollbar-width: none;
 }

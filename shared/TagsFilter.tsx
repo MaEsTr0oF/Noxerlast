@@ -1,7 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { tags } from "@/data/tags";
+
+import Slider from "@/shared/Slider";
 
 import "@/styles/shared/tagsFilter.css";
 
@@ -13,51 +15,67 @@ interface TagsFilterProps {
 const TagsFilter: React.FC<TagsFilterProps> = ({ activeTag, onTagChange }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Функция для прокрутки к активному тегу
+  // Новая функция для прокрутки к активному тегу
   const scrollToActiveTag = () => {
-    if (!isClient || !containerRef.current || !activeTag) return;
+    if (!activeTag || !containerRef.current) return;
 
+    // Находим индекс активного тега
     const activeTagIndex = tags.findIndex((tag) => tag.title === activeTag);
 
+    // Если нашли тег и есть ссылка на DOM-элемент
     if (activeTagIndex !== -1 && tagRefs.current[activeTagIndex]) {
-      const activeTagElement = tagRefs.current[activeTagIndex];
-      if (activeTagElement) {
-        // Прокручиваем к активному тегу
-        activeTagElement.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
+      const activeElement = tagRefs.current[activeTagIndex];
+
+      // Проверяем, что элемент существует
+      if (activeElement) {
+        // Находим контейнер со скроллом
+        const scrollContainer =
+          containerRef.current.querySelector(".slider-container");
+
+        if (scrollContainer) {
+          // Прокручиваем элемент в видимую область
+          activeElement.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
       }
     }
   };
 
-  // Эффект для прокрутки к активному тегу после загрузки
+  // Вызываем скролл при изменении активного тега
   useEffect(() => {
-    if (isClient && activeTag) {
-      setTimeout(() => {
-        scrollToActiveTag();
-      }, 300);
+    if (activeTag && tags.length > 0) {
+      // Задержка для уверенности, что DOM готов
+      setTimeout(scrollToActiveTag, 300);
     }
-  }, [isClient, activeTag]);
+  }, [activeTag]);
+
+  // Обработчик клика по тегу
+  const handleTagClick = (tag: string) => {
+    onTagChange(tag);
+
+    // Если выбирается новый тег (не снимается выбор), скроллим к нему
+    if (tag !== activeTag) {
+      setTimeout(scrollToActiveTag, 50);
+    }
+  };
 
   return (
-    <div className="tagsFilter">
-      <div ref={containerRef} className="slider-container">
+    <div className="tagsFilter" ref={containerRef}>
+      <Slider height={"38px"}>
         {tags.map((tag, index) => (
           <div
             key={tag.id}
             ref={(el) => {
               tagRefs.current[index] = el;
             }}
-            className={`tagsFilter-tag slider-item ${activeTag === tag.title ? "tagsFilter-tag--active" : ""} ${tag.title === "Сначала дешевле" ? "price-sort-tag" : ""}`}
-            onClick={() => onTagChange(tag.title)}
+            className={`tagsFilter-tag ${
+              activeTag === tag.title ? "tagsFilter-tag--active" : ""
+            } ${tag.title === "Сначала дешевле" ? "price-sort-tag" : ""}`}
+            onClick={() => handleTagClick(tag.title)}
           >
             <p className="tagsFilter-tag-title">{tag.title}</p>
 
@@ -95,7 +113,7 @@ const TagsFilter: React.FC<TagsFilterProps> = ({ activeTag, onTagChange }) => {
               )}
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

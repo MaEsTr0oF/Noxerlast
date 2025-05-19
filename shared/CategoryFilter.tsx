@@ -1,7 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useCategories } from "@/data/categories";
+
+import Slider from "@/shared/Slider";
 
 import "@/styles/shared/categoryFilter.css";
 
@@ -24,56 +26,74 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   const categories = useCategories();
   const containerRef = useRef<HTMLDivElement>(null);
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Функция для прокрутки к активной категории
+  // Новая функция для прокрутки к активной категории
   const scrollToActiveCategory = () => {
-    if (!isClient || !containerRef.current || activeCategory === null) return;
+    if (!activeCategory || !containerRef.current) return;
 
+    // Находим индекс активной категории
     const activeCategoryIndex = categories.findIndex(
-      (category) => category.Category_ID === activeCategory
+      (cat: Category) => cat.Category_ID === activeCategory
     );
 
+    // Если нашли категорию и есть ссылка на DOM-элемент
     if (
       activeCategoryIndex !== -1 &&
       categoryRefs.current[activeCategoryIndex]
     ) {
-      const activeCategoryElement = categoryRefs.current[activeCategoryIndex];
-      if (activeCategoryElement) {
-        // Прокручиваем к активной категории
-        activeCategoryElement.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
+      const activeElement = categoryRefs.current[activeCategoryIndex];
+
+      // Проверяем, что элемент существует
+      if (activeElement) {
+        // Находим контейнер со скроллом
+        const scrollContainer =
+          containerRef.current.querySelector(".slider-container");
+
+        if (scrollContainer) {
+          // Прокручиваем элемент в видимую область
+          activeElement.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
       }
     }
   };
 
-  // Эффект для прокрутки к активной категории после загрузки
+  // Вызываем скролл при изменении активной категории или списка категорий
   useEffect(() => {
-    if (isClient && activeCategory !== null) {
-      setTimeout(() => {
-        scrollToActiveCategory();
-      }, 300);
+    if (activeCategory && categories.length > 0) {
+      // Задержка для уверенности, что DOM готов
+      setTimeout(scrollToActiveCategory, 300);
     }
-  }, [isClient, activeCategory]);
+  }, [activeCategory, categories]);
+
+  // Обработчик клика по категории
+  const handleCategoryClick = (categoryId: number) => {
+    onCategoryChange(categoryId);
+
+    // Если выбирается новая категория (не снимается выбор), скроллим к ней
+    if (categoryId !== activeCategory) {
+      setTimeout(scrollToActiveCategory, 50);
+    }
+  };
 
   return (
-    <div className="categoryFilter">
-      <div ref={containerRef} className="slider-container">
-        {categories.map((category: Category, index) => (
+    <div className="categoryFilter" ref={containerRef}>
+      <Slider height={"38px"}>
+        {categories.map((category: Category, index: number) => (
           <div
             key={category.Category_ID}
             ref={(el) => {
               categoryRefs.current[index] = el;
             }}
-            className={`categoryFilter-tag slider-item ${activeCategory === category.Category_ID ? "categoryFilter-tag--active" : ""}`}
-            onClick={() => onCategoryChange(category.Category_ID)}
+            className={`categoryFilter-tag ${
+              activeCategory === category.Category_ID
+                ? "categoryFilter-tag--active"
+                : ""
+            }`}
+            onClick={() => handleCategoryClick(category.Category_ID)}
           >
             <img src={category.Category_Image} alt="" />
 
@@ -113,7 +133,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
             )}
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };
