@@ -32,7 +32,6 @@
   display: flex;
   position: relative;
   overflow: scroll hidden;
-  padding: 2px 0;
   -ms-overflow-style: none; /* Скрываем полосу прокрутки для IE и Edge */
 }
 .tagsFilter .slider-container {
