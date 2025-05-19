@@ -266,7 +266,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     if (Object.keys(activeCategoryTags).length === 0) {
       return (
         <div className="tagsFilter custom-tagsFilter tagsFilter-empty">
-          <div className="tagsFilter-empty-message">Нет доступных тегов</div>
+          
         </div>
       );
     }

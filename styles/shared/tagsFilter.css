@@ -17,11 +17,7 @@
 } */
 
 .tagsFilter-empty-message {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  color: #888887;
-  font-size: 12px;
+  display: none;
 }
 
 /* Новый слайдер на CSS */
