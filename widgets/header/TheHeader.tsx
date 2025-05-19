@@ -6,7 +6,7 @@ import ru from "@/messages/ru.json";
 import { dataStore } from "@/store/DataStore";
 import "@/styles/widgets/header.css";
 import { useLocation } from "react-router-dom";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS } from "@/utils/detectPlatform";
 
 const TheHeader = () => {
   const pathname = usePathname();

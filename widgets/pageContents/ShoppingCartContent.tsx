@@ -18,7 +18,7 @@ import MaskedInput from "react-text-mask";
 import "@/styles/widgets/shoppingCart.css";
 import Loading from "@/shared/Loading";
 import { NavLink } from "react-router-dom";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS } from "@/utils/detectPlatform";
 
 // Компонент всплывающего окна для отображения ошибок формы
 const FormErrorModal = ({

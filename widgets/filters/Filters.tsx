@@ -60,11 +60,6 @@ const Filters: React.FC<FiltersProps> = ({
             activeCategory={activeCategory}
             onCategoryChange={handleCategoryChange}
           />
-
-          {/*<SubCategoryFilter*/}
-          {/*  activeCategory={activeCategory}*/}
-          {/*  onCategoryChange={handleCategoryChange}*/}
-          {/*/>*/}
         </div>
       </div>
 

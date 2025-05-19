@@ -23,7 +23,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Loading from "@/shared/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS } from "@/utils/detectPlatform";
 import { getTagBackground } from "@/utils/getTagBackground";
 import { getTagLabel } from "@/utils/getTagLabel";
 import VideoReview from "@/entities/VideoReview";
@@ -304,9 +304,9 @@ const ProductContent = observer(() => {
     const tg = window.Telegram.WebApp;
     if (tg) {
       tg.openLink(link, { try_instant_view: true });
-    }else{
+    } else {
       window.open(link, "_blank");
-    } 
+    }
   }
 
   useEffect(() => {
@@ -518,9 +518,9 @@ const ProductContent = observer(() => {
     setIsAddingToCart(isCurrentItemInCart);
   }
 
-  function scrollToVideo () {
+  function scrollToVideo() {
     const e = document.getElementById("Video-review");
-    if (e) e.scrollIntoView({ behavior: "smooth" })
+    if (e) e.scrollIntoView({ behavior: "smooth" });
   }
 
   if (isLoading) {
@@ -796,39 +796,39 @@ const ProductContent = observer(() => {
           <div className="parameters-section">
             <h3 className="parameters-title">{selectedParameterType}</h3>
             <div className="parameters-content">
-            <Slider height={"38px"} between="5px">
-              {targetProduct.parameters.map((param: any) => {
-                // Получаем ключ параметра
-                const paramKey = param.name;
+              <Slider height={"38px"} between="5px">
+                {targetProduct.parameters.map((param: any) => {
+                  // Получаем ключ параметра
+                  const paramKey = param.name;
 
-                // Проверяем, выбран ли данный параметр
-                const isActive =
-                  selectedParams[paramKey]?.id === param.Parameter_ID;
+                  // Проверяем, выбран ли данный параметр
+                  const isActive =
+                    selectedParams[paramKey]?.id === param.Parameter_ID;
 
-                return (
-                  <div
-                    key={`param-${param.Parameter_ID || Math.random()}`}
-                    className={`parameters-item ${isActive ? "parameters-item--active" : ""}`}
-                    onClick={() =>
-                      addSettingItem(
-                        {
-                          id: param.Parameter_ID,
-                          index: 0,
-                          title: param.parameter_string,
-                          price: param.price || 0,
-                          old_price: param.old_price,
-                        },
-                        param.name
-                      )
-                    }
-                  >
-                    <p className="parameters-text">
-                      {param.parameter_string || "Без названия"}
-                    </p>
-                  </div>
-                );
-              })}
-            </Slider>
+                  return (
+                    <div
+                      key={`param-${param.Parameter_ID || Math.random()}`}
+                      className={`parameters-item ${isActive ? "parameters-item--active" : ""}`}
+                      onClick={() =>
+                        addSettingItem(
+                          {
+                            id: param.Parameter_ID,
+                            index: 0,
+                            title: param.parameter_string,
+                            price: param.price || 0,
+                            old_price: param.old_price,
+                          },
+                          param.name
+                        )
+                      }
+                    >
+                      <p className="parameters-text">
+                        {param.parameter_string || "Без названия"}
+                      </p>
+                    </div>
+                  );
+                })}
+              </Slider>
             </div>
           </div>
         )}
@@ -839,19 +839,19 @@ const ProductContent = observer(() => {
             <h3 className="parameters-title">Цвет</h3>
             <div className="color-options">
               <Slider height={"42px"} between={"5px"}>
-              {targetProduct.colors.map((color: any) => (
-                <div
-                  key={`color-${color.Color_ID || Math.random()}`}
-                  className={`color-option ${selectedColor?.Color_ID === color.Color_ID ? "color-option--active" : ""}`}
-                  onClick={() => selectColor(color)}
-                >
+                {targetProduct.colors.map((color: any) => (
                   <div
-                    className="color-circle"
-                    style={{ backgroundColor: color.Color_Code || "#ccc" }}
-                  />
-                  <p className="color-name">{color.Color_Name}</p>
-                </div>
-              ))}
+                    key={`color-${color.Color_ID || Math.random()}`}
+                    className={`color-option ${selectedColor?.Color_ID === color.Color_ID ? "color-option--active" : ""}`}
+                    onClick={() => selectColor(color)}
+                  >
+                    <div
+                      className="color-circle"
+                      style={{ backgroundColor: color.Color_Code || "#ccc" }}
+                    />
+                    <p className="color-name">{color.Color_Name}</p>
+                  </div>
+                ))}
               </Slider>
             </div>
           </div>
@@ -893,7 +893,10 @@ const ProductContent = observer(() => {
                 onClick={toggleDescriptionHandler}
                 className="description-header"
               >
-                <h3 className="description-title">{dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_12_value || "Описание"}</h3>
+                <h3 className="description-title">
+                  {dataStore.data?.special_project_parameters
+                    ?.product_page_accordeon_item_header_12_value || "Описание"}
+                </h3>
 
                 <button
                   onClick={toggleDescriptionHandler}
@@ -921,7 +924,11 @@ const ProductContent = observer(() => {
             className={`specs-block ${isSpecsOpen ? "specs-block--open" : ""}`}
           >
             <div onClick={toggleSpecsHandler} className="specs-header">
-              <h3 className="specs-title">{dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_34_value || "Характеристики"}</h3>
+              <h3 className="specs-title">
+                {dataStore.data?.special_project_parameters
+                  ?.product_page_accordeon_item_header_34_value ||
+                  "Характеристики"}
+              </h3>
 
               <button
                 onClick={toggleSpecsHandler}
@@ -1020,8 +1027,10 @@ const ProductContent = observer(() => {
           </div>
         )}
 
-        {targetProduct.reviews_video?.length > 0 && <VideoReview video={targetProduct.reviews_video[0]} />}
-        
+        {targetProduct.reviews_video?.length > 0 && (
+          <VideoReview video={targetProduct.reviews_video[0]} />
+        )}
+
         <button
           onClick={handleAddToCart}
           className={`add-to-cart-button click-effect-block 

@@ -1,14 +1,29 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  useCallback,
+} from "react";
 import { observer } from "mobx-react-lite";
 import { NavLink, useLocation } from "react-router-dom";
 import { shoppingCartStore } from "@/store/ShoppingCartStore";
 import "@/styles/widgets/footer.css";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS, detectAndroid } from "@/utils/detectPlatform";
 
 const TheFooter = observer(() => {
   const location = useLocation();
   const [isIOS, setIsIOS] = useState(false);
+  const [isAndroid, setIsAndroid] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(true);
+  const [isFooterRaised, setIsFooterRaised] = useState(false);
+  const lastScrollPosition = useRef(0);
+  const scrollingTimeout = useRef<NodeJS.Timeout | null>(null);
+  const footerRef = useRef<HTMLElement>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
+  const touchRaisingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const [links, setLinks] = useState([
     {
@@ -86,11 +101,140 @@ const TheFooter = observer(() => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setIsIOS(detectIOS());
+      setIsAndroid(detectAndroid());
     }
   }, []);
 
+  // Функция для поднятия футера
+  const raiseFooter = useCallback(() => {
+    if (!isAndroid || !footerRef.current) return;
+
+    setIsFooterRaised(true);
+
+    // Автоматически опускаем футер через 3 секунды
+    if (touchRaisingTimeout.current) {
+      clearTimeout(touchRaisingTimeout.current);
+    }
+
+    touchRaisingTimeout.current = setTimeout(() => {
+      setIsFooterRaised(false);
+    }, 3000);
+  }, [isAndroid]);
+
+  // Обработчики касаний для поднятия футера
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (!isAndroid) return;
+      touchStartY.current = e.touches[0].clientY;
+    },
+    [isAndroid]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!isAndroid || touchStartY.current === null) return;
+      touchEndY.current = e.touches[0].clientY;
+
+      // Если свайп вверх
+      if (touchEndY.current < touchStartY.current - 10) {
+        raiseFooter();
+      }
+    },
+    [isAndroid, raiseFooter]
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    if (!isAndroid) return;
+    touchStartY.current = null;
+    touchEndY.current = null;
+  }, [isAndroid]);
+
+  // Обработчик клика по футеру для поднятия
+  const handleFooterClick = useCallback(() => {
+    if (!isAndroid) return;
+    raiseFooter();
+  }, [isAndroid, raiseFooter]);
+
+  // Обработчик скролла для Android
+  useEffect(() => {
+    if (!isAndroid) return;
+
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Сбрасываем таймаут при каждом скролле
+      if (scrollingTimeout.current) {
+        clearTimeout(scrollingTimeout.current);
+      }
+
+      // Если скроллим вверх (значение уменьшается), показываем футер
+      if (currentScrollPos < lastScrollPosition.current) {
+        setIsFooterVisible(true);
+        setIsFooterRaised(false);
+      }
+      // Если скроллим вниз (значение увеличивается), скрываем футер
+      // Но не скрываем, если достигли конца страницы (оставляем пространство для системных кнопок)
+      else if (currentScrollPos > lastScrollPosition.current) {
+        // Проверяем, находимся ли мы рядом с концом страницы
+        const isNearBottom =
+          windowHeight + currentScrollPos + 100 >= documentHeight;
+
+        // Если не в конце страницы - скрываем футер
+        if (!isNearBottom) {
+          setIsFooterVisible(false);
+          setIsFooterRaised(false);
+        } else {
+          // Если в конце страницы - показываем футер
+          setIsFooterVisible(true);
+          // В конце страницы поднимаем футер для кнопок Android
+          raiseFooter();
+        }
+      }
+
+      // Сохраняем текущую позицию скролла
+      lastScrollPosition.current = currentScrollPos;
+
+      // Устанавливаем таймаут для показа футера при неактивном скролле
+      scrollingTimeout.current = setTimeout(() => {
+        setIsFooterVisible(true);
+        // Сбрасываем поднятый футер
+        setIsFooterRaised(false);
+      }, 2000); // Показываем футер через 2 секунды неактивности
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Начальное состояние - футер виден
+    setIsFooterVisible(true);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollingTimeout.current) {
+        clearTimeout(scrollingTimeout.current);
+      }
+      if (touchRaisingTimeout.current) {
+        clearTimeout(touchRaisingTimeout.current);
+      }
+    };
+  }, [isAndroid, raiseFooter]);
+
+  const footerClassName = `footer 
+    ${isIOS ? "footer-ios" : ""} 
+    ${isAndroid ? "footer-android" : ""} 
+    ${!isFooterVisible ? "footer-hidden" : ""}
+    ${isFooterRaised ? "footer-raised" : ""}`;
+
   return (
-    <footer className={`footer ${isIOS ? "footer-ios" : ""}`}>
+    <footer
+      ref={footerRef}
+      className={footerClassName}
+      onClick={handleFooterClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <nav className="footer-nav">
         {links.map((link) => (
           <NavLink

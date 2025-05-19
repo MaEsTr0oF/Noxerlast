@@ -21,7 +21,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Loading from "@/shared/Loading";
 import { NavLink } from "react-router-dom";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS } from "@/utils/detectPlatform";
 import { useCategories } from "@/data/categories";
 
 const HomePageContent = observer(() => {

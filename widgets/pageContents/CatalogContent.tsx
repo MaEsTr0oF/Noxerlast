@@ -12,7 +12,7 @@ import Filters from "@/widgets/filters/Filters";
 import Search from "@/shared/Search";
 
 import "@/styles/widgets/catalog.css";
-import { detectIOS } from "@/utils/detectIOS";
+import { detectIOS } from "@/utils/detectPlatform";
 
 const STORAGE_KEYS = {
   ACTIVE_CATEGORY: "brandbot_active_category",

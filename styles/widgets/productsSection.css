@@ -40,16 +40,3 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-@media (min-width: 768px) {
-  .productsSection-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .productsSection-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
