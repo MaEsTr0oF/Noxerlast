@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { observer } from "mobx-react-lite";
 
@@ -7,7 +7,7 @@ import { iconsBaseLink } from "@/utils/globalVariables";
 
 import { dataStore } from "@/store/DataStore";
 
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Link from "next/link";
@@ -72,7 +72,7 @@ const HomePageContent = observer(() => {
     }
 
     const swiperSettings = {
-      modules: [Pagination],
+      modules: [Pagination, Autoplay],
       spaceBetween: 10,
       slidesPerView: 1,
       pagination: { clickable: true },
@@ -82,6 +82,10 @@ const HomePageContent = observer(() => {
       touchRatio: 1,
       resistanceRatio: 0,
       preventInteractionOnTransition: false,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
     };
 
     return (
