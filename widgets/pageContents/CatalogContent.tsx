@@ -101,13 +101,16 @@ const CatalogContent = () => {
     // Проверяем параметр tag в хеше URL
     const hashTagParam = getHashParam("tag");
 
-    // Обработка URL-параметра tag=sale для фильтрации товаров со скидкой
-    if (tagParam === "sale" || hashTagParam === "sale") {
-      setActiveCustomTag(["sale"]);
+    // Обработка URL-параметров для фильтрации товаров по тегам (sale, premium, new, hit, hot)
+    const availableTags = ["sale", "premium", "new", "hit", "hot"];
+    const requestedTag = tagParam || hashTagParam;
+
+    if (requestedTag && availableTags.includes(requestedTag)) {
+      setActiveCustomTag([requestedTag]);
       setShowCustomTags(true);
       localStorage.setItem(
         STORAGE_KEYS.ACTIVE_CUSTOM_TAG,
-        JSON.stringify(["sale"])
+        JSON.stringify([requestedTag])
       );
       localStorage.setItem(
         STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER,
@@ -117,7 +120,7 @@ const CatalogContent = () => {
       setActiveCustomTag(
         Array.isArray(storedCustomTags) ? storedCustomTags : []
       );
-      // Если есть активные кастомные теги, всегда показываем фильтр
+      // Если есть активные кастомные теги, всегда показываем фильтр тегов
       const hasActiveCustomTags =
         Array.isArray(storedCustomTags) && storedCustomTags.length > 0;
       setShowCustomTags(
@@ -165,7 +168,10 @@ const CatalogContent = () => {
   };
 
   const handleCustomTagChange = (tag: string) => {
-    const isSaleTag = tag.toLowerCase() === "sale";
+    // Используем те же теги, что и выше
+    const isSpecialTag = ["sale", "premium", "new", "hit", "hot"].includes(
+      tag.toLowerCase()
+    );
 
     setActiveCustomTag((prevActiveTags) => {
       // Проверяем, включен ли уже тег в список активных
@@ -177,9 +183,9 @@ const CatalogContent = () => {
         // Если тег уже активен, удаляем его из списка
         newActiveTags = prevActiveTags.filter((t) => t !== tag);
 
-        // Если деактивируем тег "sale", обновляем отображение фильтра тегов
-        if (isSaleTag) {
-          // Деактивация тега Sale
+        // Если деактивируем специальный тег, обновляем отображение фильтра тегов
+        if (isSpecialTag) {
+          // Деактивация специального тега
         }
       } else {
         // Если тег не активен, добавляем его к существующим тегам

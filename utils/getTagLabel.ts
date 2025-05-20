@@ -2,12 +2,16 @@ export const getTagLabel = (tag: string) => {
   switch (tag?.toLowerCase()) {
     case "хит":
     case "hit":
-      return "ХИТ"
+      return "ХИТ";
     case "new":
-      return "NEW"
+      return "NEW";
     case "sale":
-      return "SALE"
+      return "SALE";
+    case "premium":
+      return "PREMIUM";
+    case "hot":
+      return "HOT";
     default:
-      return tag
+      return tag;
   }
-}
+};

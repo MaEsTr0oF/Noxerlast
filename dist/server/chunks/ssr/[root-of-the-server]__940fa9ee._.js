@@ -798,6 +798,10 @@ const getTagBackground = (tag)=>{
             return "bg-[#45b649]";
         case "sale":
             return "bg-[#ffca28]";
+        case "premium":
+            return "bg-[#7561E8]";
+        case "hot":
+            return "bg-[#FF5722]";
         default:
             return "bg-[#292928]";
     }
@@ -820,6 +824,10 @@ const getTagLabel = (tag)=>{
             return "NEW";
         case "sale":
             return "SALE";
+        case "premium":
+            return "PREMIUM";
+        case "hot":
+            return "HOT";
         default:
             return tag;
     }
@@ -1150,27 +1158,37 @@ const ProductsSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
     const filterCustomProducts = (products, filters)=>{
         if (!filters || filters.length === 0) return products;
         const filteredProducts = products.filter((product)=>{
-            // Разделим фильтры на "sale" и остальные кастомные теги
-            const hasSaleFilter = filters.includes("sale");
-            const otherFilters = filters.filter((filter)=>filter !== "sale");
-            // Проверим, соответствует ли товар фильтру "sale", если он активен
-            let matchesSale = true;
-            if (hasSaleFilter) {
-                const hasSaleMark = product.marks && Array.isArray(product.marks) && product.marks.some((mark)=>{
-                    const isMatch = mark.Mark_Name && mark.Mark_Name.toLowerCase() === "sale";
-                    return isMatch;
+            // Доступные специальные теги
+            const specialTags = [
+                "sale",
+                "premium",
+                "new",
+                "hit",
+                "hot"
+            ];
+            // Разделим фильтры на специальные теги и обычные теги
+            const specialFilters = filters.filter((filter)=>specialTags.includes(filter));
+            const regularFilters = filters.filter((filter)=>!specialTags.includes(filter));
+            // Проверяем соответствие товара специальным тегам
+            let matchesSpecialTags = true;
+            if (specialFilters.length > 0) {
+                // Товар должен соответствовать хотя бы одному из выбранных специальных тегов (логика "ИЛИ")
+                matchesSpecialTags = specialFilters.some((filter)=>{
+                    return product.marks && Array.isArray(product.marks) && product.marks.some((mark)=>mark.Mark_Name && mark.Mark_Name.toLowerCase() === filter.toLowerCase());
                 });
-                matchesSale = hasSaleMark;
             }
-            // Проверим, соответствует ли товар другим кастомным тегам, если они есть
-            let matchesOtherTags = true;
-            if (otherFilters.length > 0) {
-                // Товар должен соответствовать хотя бы одному из выбранных тегов
-                matchesOtherTags = product.tags && Array.isArray(product.tags) && otherFilters.some((filter)=>product.tags.includes(filter));
+            // Проверяем соответствие товара обычным тегам
+            let matchesRegularTags = true;
+            if (regularFilters.length > 0) {
+                // Товар должен соответствовать хотя бы одному из выбранных обычных тегов
+                matchesRegularTags = product.tags && Array.isArray(product.tags) && regularFilters.some((filter)=>product.tags.includes(filter));
             }
-            // В режиме отображения товаров со скидкой с дополнительными тегами:
-            // товар должен иметь метку sale И соответствовать хотя бы одному из выбранных тегов
-            return matchesSale && matchesOtherTags;
+            // Если есть фильтры любого типа, товар должен соответствовать хотя бы одному из них (логика "ИЛИ")
+            if (specialFilters.length > 0 && regularFilters.length > 0) {
+                return matchesSpecialTags || matchesRegularTags;
+            }
+            // Если есть только один тип фильтров, используем соответствующее условие
+            return matchesSpecialTags && matchesRegularTags;
         });
         return filteredProducts;
     };
@@ -1402,11 +1420,11 @@ const ProductsSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
             children: "товар не найден"
         }, void 0, false, {
             fileName: "[project]/widgets/sections/ProductsSection.tsx",
-            lineNumber: 378,
+            lineNumber: 393,
             columnNumber: 11
         }, this) : isLoad === "pending" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$Loading$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
             fileName: "[project]/widgets/sections/ProductsSection.tsx",
-            lineNumber: 380,
+            lineNumber: 395,
             columnNumber: 11
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
@@ -1427,13 +1445,13 @@ const ProductsSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
                             categoryId: product.categories && Array.isArray(product.categories) && product.categories.length > 0 ? product.categories[0].Category_ID : 0
                         }, `${product.Product_ID}-${index}`, false, {
                             fileName: "[project]/widgets/sections/ProductsSection.tsx",
-                            lineNumber: 394,
+                            lineNumber: 409,
                             columnNumber: 21
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/widgets/sections/ProductsSection.tsx",
-                    lineNumber: 383,
+                    lineNumber: 398,
                     columnNumber: 13
                 }, this),
                 !allLoaded && isLoad === true && getCorrectArray().length > visibleCount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1441,19 +1459,19 @@ const ProductsSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
                     className: "productsSection-loader",
                     children: loadingMore && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$Loading$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/widgets/sections/ProductsSection.tsx",
-                        lineNumber: 427,
+                        lineNumber: 442,
                         columnNumber: 35
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/widgets/sections/ProductsSection.tsx",
-                    lineNumber: 426,
+                    lineNumber: 441,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true)
     }, void 0, false, {
         fileName: "[project]/widgets/sections/ProductsSection.tsx",
-        lineNumber: 376,
+        lineNumber: 391,
         columnNumber: 7
     }, this);
 });
@@ -2360,37 +2378,26 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                     const activeCategoryId = parseInt(activeCategory, 10);
                     filteredProducts = filteredProducts.filter((product)=>product.categories && Array.isArray(product.categories) && product.categories.some((cat)=>cat.Category_ID === activeCategoryId));
                 }
-                // Проверяем, есть ли "sale" в активных тегах
-                const isSaleActive = activeCustomTag.includes("sale");
-                // Находим товары со скидкой
-                const saleProducts = filteredProducts.filter((product)=>product.marks && Array.isArray(product.marks) && product.marks.some((mark)=>mark.Mark_Name && mark.Mark_Name.toLowerCase() === "sale"));
-                saleItemsCount = saleProducts.length;
-                // Если "sale" активен, перестраиваем список тегов
-                if (isSaleActive && saleItemsCount > 0) {
-                    // Собираем теги, которые есть в товарах со скидкой
-                    const tagsInSaleProducts = {};
-                    // Всегда добавляем "sale" тег
-                    tagsInSaleProducts["sale"] = saleItemsCount;
-                    // Подсчитываем встречаемость других тегов в товарах со скидкой
-                    saleProducts.forEach((product)=>{
-                        if (product.tags && Array.isArray(product.tags)) {
-                            product.tags.forEach((tag)=>{
-                                if (tag.toLowerCase() !== "sale") {
-                                    // Исключаем сам тег sale
-                                    if (tagsInSaleProducts[tag]) {
-                                        tagsInSaleProducts[tag]++;
-                                    } else {
-                                        tagsInSaleProducts[tag] = 1;
-                                    }
-                                }
-                            });
-                        }
-                    });
-                    // Заменяем список тегов только на те, которые есть в товарах со скидкой
-                    categoryTags = tagsInSaleProducts;
-                } else if (saleItemsCount > 0) {
-                    categoryTags["sale"] = saleItemsCount;
-                }
+                // Доступные специальные теги
+                const specialTags = [
+                    "sale",
+                    "premium",
+                    "new",
+                    "hit",
+                    "hot"
+                ];
+                // Добавляем все специальные теги в categoryTags
+                specialTags.forEach((specialTag)=>{
+                    // Проверяем, активен ли этот тег
+                    const isTagActive = activeCustomTag.includes(specialTag);
+                    // Находим товары с этим тегом
+                    const taggedProducts = filteredProducts.filter((product)=>product.marks && Array.isArray(product.marks) && product.marks.some((mark)=>mark.Mark_Name && mark.Mark_Name.toLowerCase() === specialTag));
+                    const taggedItemsCount = taggedProducts.length;
+                    // Если тег активен или есть товары с этим тегом, добавляем его в categoryTags
+                    if (isTagActive && taggedItemsCount > 0 || taggedItemsCount > 0) {
+                        categoryTags[specialTag] = taggedItemsCount;
+                    }
+                });
             }
             setActiveCategoryTags(categoryTags);
             setIsLoading(false);
@@ -2447,12 +2454,12 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
             className: "tagsFilter custom-tagsFilter tagsFilter-loading",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$Loading$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                lineNumber: 429,
+                lineNumber: 409,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "[project]/shared/CustomTagsFilter.tsx",
-            lineNumber: 428,
+            lineNumber: 408,
             columnNumber: 9
         }, this);
     }
@@ -2461,12 +2468,12 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
             className: "tagsFilter custom-tagsFilter tagsFilter-loading",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$Loading$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                lineNumber: 437,
+                lineNumber: 417,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "[project]/shared/CustomTagsFilter.tsx",
-            lineNumber: 436,
+            lineNumber: 416,
             columnNumber: 9
         }, this);
     }
@@ -2477,20 +2484,35 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                 className: "tagsFilter-empty-message"
             }, void 0, false, {
                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                lineNumber: 445,
+                lineNumber: 425,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "[project]/shared/CustomTagsFilter.tsx",
-            lineNumber: 444,
+            lineNumber: 424,
             columnNumber: 9
         }, this);
     }
-    // Сортируем теги так, чтобы "sale" и активные были вначале
+    // Сортируем теги так, чтобы специальные теги и активные были вначале
     const allTagsArray = Object.entries(activeCategoryTags).sort((a, b)=>{
-        // Специальный тег "sale" всегда в начале
-        if (a[0].toLowerCase() === "sale") return -1;
-        if (b[0].toLowerCase() === "sale") return 1;
+        // Список специальных тегов
+        const specialTags = [
+            "sale",
+            "premium",
+            "new",
+            "hit",
+            "hot"
+        ];
+        // Проверяем, являются ли теги специальными
+        const isASpecial = specialTags.includes(a[0].toLowerCase());
+        const isBSpecial = specialTags.includes(b[0].toLowerCase());
+        // Если оба тега специальные, сортируем по порядку в массиве specialTags
+        if (isASpecial && isBSpecial) {
+            return specialTags.indexOf(a[0].toLowerCase()) - specialTags.indexOf(b[0].toLowerCase());
+        }
+        // Специальные теги всегда в начале
+        if (isASpecial) return -1;
+        if (isBSpecial) return 1;
         // Затем идут активные теги
         const isAActive = activeCustomTag.includes(a[0]);
         const isBActive = activeCustomTag.includes(b[0]);
@@ -2516,6 +2538,10 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                             className: `tagsFilter-tag 
                 ${activeCustomTag.includes(tagName) ? "tagsFilter-tag--active" : ""} 
                 ${tagName.toLowerCase() === "sale" ? "tagsFilter-tag--sale" : ""}
+                ${tagName.toLowerCase() === "premium" ? "tagsFilter-tag--premium" : ""}
+                ${tagName.toLowerCase() === "new" ? "tagsFilter-tag--new" : ""}
+                ${tagName.toLowerCase() === "hit" ? "tagsFilter-tag--hit" : ""}
+                ${tagName.toLowerCase() === "hot" ? "tagsFilter-tag--hot" : ""}
                 ${movingTag === tagName ? "tagsFilter-tag--moving-front" : ""}
                 ${movingTag && movingTag !== tagName && index < 3 ? "tagsFilter-tag--shifting" : ""}
               `,
@@ -2523,13 +2549,13 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "tagsFilter-tag-title",
                                 children: [
-                                    tagName.toLowerCase() === "sale" ? "Sale" : tagName,
+                                    tagName.toLowerCase() === "sale" ? "Sale" : tagName.toLowerCase() === "premium" ? "Premium" : tagName.toLowerCase() === "new" ? "New" : tagName.toLowerCase() === "hit" ? "Хит" : tagName.toLowerCase() === "hot" ? "Hot" : tagName,
                                     !activeCustomTag.includes(tagName) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "tagsFilter-tag-count",
                                         children: count
                                     }, void 0, false, {
                                         fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                        lineNumber: 503,
+                                        lineNumber: 512,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "tagsFilter-tag-close",
@@ -2548,7 +2574,7 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                                    lineNumber: 513,
+                                                    lineNumber: 522,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2559,29 +2585,29 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                                    lineNumber: 520,
+                                                    lineNumber: 529,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                            lineNumber: 506,
+                                            lineNumber: 515,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                        lineNumber: 505,
+                                        lineNumber: 514,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                                lineNumber: 500,
+                                lineNumber: 499,
                                 columnNumber: 15
                             }, this)
                         }, index, false, {
                             fileName: "[project]/shared/CustomTagsFilter.tsx",
-                            lineNumber: 486,
+                            lineNumber: 481,
                             columnNumber: 13
                         }, this)),
                     showHideButton && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2594,18 +2620,18 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                             children: "Скрыть"
                         }, void 0, false, {
                             fileName: "[project]/shared/CustomTagsFilter.tsx",
-                            lineNumber: 542,
+                            lineNumber: 551,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/shared/CustomTagsFilter.tsx",
-                        lineNumber: 535,
+                        lineNumber: 544,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                lineNumber: 481,
+                lineNumber: 476,
                 columnNumber: 9
             }, this),
             showMoreButton && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2622,18 +2648,18 @@ const CustomTagsFilter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$nod
                     ]
                 }, void 0, true, {
                     fileName: "[project]/shared/CustomTagsFilter.tsx",
-                    lineNumber: 554,
+                    lineNumber: 563,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/shared/CustomTagsFilter.tsx",
-                lineNumber: 547,
+                lineNumber: 556,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/shared/CustomTagsFilter.tsx",
-        lineNumber: 480,
+        lineNumber: 475,
         columnNumber: 7
     }, this);
 });
@@ -2670,10 +2696,17 @@ const Filters = ({ activeCustomTag, activeTag, activeCategory, setActiveCustomTa
         const categoryParam = searchParams?.get("category");
         // Обрабатываем параметр tag
         if (tagParam) {
-            if (tagParam.toLowerCase() === "sale") {
-                // Если это тег sale, добавляем его в activeCustomTag
-                if (!activeCustomTag.includes("sale")) {
-                    handleCustomTagChange("sale");
+            const availableTags = [
+                "sale",
+                "premium",
+                "new",
+                "hit",
+                "hot"
+            ];
+            if (availableTags.includes(tagParam.toLowerCase())) {
+                // Если это один из специальных тегов, добавляем его в activeCustomTag
+                if (!activeCustomTag.includes(tagParam.toLowerCase())) {
+                    handleCustomTagChange(tagParam.toLowerCase());
                 }
             } else {
                 // Для других тегов используем обычный обработчик
@@ -2707,17 +2740,17 @@ const Filters = ({ activeCustomTag, activeTag, activeCategory, setActiveCustomTa
                         onCategoryChange: handleCategoryChange
                     }, void 0, false, {
                         fileName: "[project]/widgets/filters/Filters.tsx",
-                        lineNumber: 88,
+                        lineNumber: 90,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/widgets/filters/Filters.tsx",
-                    lineNumber: 84,
+                    lineNumber: 86,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/filters/Filters.tsx",
-                lineNumber: 80,
+                lineNumber: 82,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2731,17 +2764,17 @@ const Filters = ({ activeCustomTag, activeTag, activeCategory, setActiveCustomTa
                         onTagChange: handleTagChange
                     }, void 0, false, {
                         fileName: "[project]/widgets/filters/Filters.tsx",
-                        lineNumber: 103,
+                        lineNumber: 105,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/widgets/filters/Filters.tsx",
-                    lineNumber: 99,
+                    lineNumber: 101,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/filters/Filters.tsx",
-                lineNumber: 95,
+                lineNumber: 97,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2756,17 +2789,17 @@ const Filters = ({ activeCustomTag, activeTag, activeCategory, setActiveCustomTa
                         activeCategory: activeCategory ? activeCategory.toString() : null
                     }, void 0, false, {
                         fileName: "[project]/widgets/filters/Filters.tsx",
-                        lineNumber: 115,
+                        lineNumber: 117,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/widgets/filters/Filters.tsx",
-                    lineNumber: 111,
+                    lineNumber: 113,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/filters/Filters.tsx",
-                lineNumber: 107,
+                lineNumber: 109,
                 columnNumber: 7
             }, this)
         ]
@@ -2978,19 +3011,27 @@ const CatalogContent = ()=>{
         const tagParam = searchParams ? searchParams.get("tag") : null;
         // Проверяем параметр tag в хеше URL
         const hashTagParam = getHashParam("tag");
-        // Обработка URL-параметра tag=sale для фильтрации товаров со скидкой
-        if (tagParam === "sale" || hashTagParam === "sale") {
+        // Обработка URL-параметров для фильтрации товаров по тегам (sale, premium, new, hit, hot)
+        const availableTags = [
+            "sale",
+            "premium",
+            "new",
+            "hit",
+            "hot"
+        ];
+        const requestedTag = tagParam || hashTagParam;
+        if (requestedTag && availableTags.includes(requestedTag)) {
             setActiveCustomTag([
-                "sale"
+                requestedTag
             ]);
             setShowCustomTags(true);
             localStorage.setItem(STORAGE_KEYS.ACTIVE_CUSTOM_TAG, JSON.stringify([
-                "sale"
+                requestedTag
             ]));
             localStorage.setItem(STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER, JSON.stringify(true));
         } else {
             setActiveCustomTag(Array.isArray(storedCustomTags) ? storedCustomTags : []);
-            // Если есть активные кастомные теги, всегда показываем фильтр
+            // Если есть активные кастомные теги, всегда показываем фильтр тегов
             const hasActiveCustomTags = Array.isArray(storedCustomTags) && storedCustomTags.length > 0;
             setShowCustomTags(hasActiveCustomTags || getStoredValue(STORAGE_KEYS.SHOW_CUSTOM_TAG_FILTER, false));
             // Если есть параметр категории, автоматически показываем фильтр тегов
@@ -3022,7 +3063,14 @@ const CatalogContent = ()=>{
         localStorage.setItem(STORAGE_KEYS.ACTIVE_TAG, JSON.stringify(newTagValue));
     };
     const handleCustomTagChange = (tag)=>{
-        const isSaleTag = tag.toLowerCase() === "sale";
+        // Используем те же теги, что и выше
+        const isSpecialTag = [
+            "sale",
+            "premium",
+            "new",
+            "hit",
+            "hot"
+        ].includes(tag.toLowerCase());
         setActiveCustomTag((prevActiveTags)=>{
             // Проверяем, включен ли уже тег в список активных
             const isTagAlreadyActive = prevActiveTags.includes(tag);
@@ -3030,9 +3078,9 @@ const CatalogContent = ()=>{
             if (isTagAlreadyActive) {
                 // Если тег уже активен, удаляем его из списка
                 newActiveTags = prevActiveTags.filter((t)=>t !== tag);
-                // Если деактивируем тег "sale", обновляем отображение фильтра тегов
-                if (isSaleTag) {
-                // Деактивация тега Sale
+                // Если деактивируем специальный тег, обновляем отображение фильтра тегов
+                if (isSpecialTag) {
+                // Деактивация специального тега
                 }
             } else {
                 // Если тег не активен, добавляем его к существующим тегам
@@ -3091,7 +3139,7 @@ const CatalogContent = ()=>{
                                 children: __TURBOPACK__imported__module__$5b$project$5d2f$messages$2f$ru$2e$json__$28$json$29$__["default"].widgets.catalog.title
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                lineNumber: 249,
+                                lineNumber: 255,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3106,12 +3154,12 @@ const CatalogContent = ()=>{
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                            lineNumber: 257,
+                                            lineNumber: 263,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                        lineNumber: 252,
+                                        lineNumber: 258,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3123,12 +3171,12 @@ const CatalogContent = ()=>{
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                            lineNumber: 265,
+                                            lineNumber: 271,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                        lineNumber: 260,
+                                        lineNumber: 266,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3140,24 +3188,24 @@ const CatalogContent = ()=>{
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                            lineNumber: 273,
+                                            lineNumber: 279,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 274,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                                lineNumber: 251,
+                                lineNumber: 257,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                        lineNumber: 248,
+                        lineNumber: 254,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3169,12 +3217,12 @@ const CatalogContent = ()=>{
                             initialValue: searchQuery
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                            lineNumber: 282,
+                            lineNumber: 288,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                        lineNumber: 278,
+                        lineNumber: 284,
                         columnNumber: 9
                     }, this),
                     isClient && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
@@ -3193,18 +3241,18 @@ const CatalogContent = ()=>{
                             setActiveCustomTag: setActiveCustomTag
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                            lineNumber: 291,
+                            lineNumber: 297,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                        lineNumber: 290,
+                        lineNumber: 296,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                lineNumber: 247,
+                lineNumber: 253,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$widgets$2f$sections$2f$ProductsSection$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3215,13 +3263,13 @@ const CatalogContent = ()=>{
                 searchQuery: searchQuery
             }, void 0, false, {
                 fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-                lineNumber: 309,
+                lineNumber: 315,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/widgets/pageContents/CatalogContent.tsx",
-        lineNumber: 242,
+        lineNumber: 248,
         columnNumber: 5
     }, this);
 };

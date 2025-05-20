@@ -48,10 +48,12 @@ const Filters: React.FC<FiltersProps> = ({
 
     // Обрабатываем параметр tag
     if (tagParam) {
-      if (tagParam.toLowerCase() === "sale") {
-        // Если это тег sale, добавляем его в activeCustomTag
-        if (!activeCustomTag.includes("sale")) {
-          handleCustomTagChange("sale");
+      const availableTags = ["sale", "premium", "new", "hit", "hot"];
+
+      if (availableTags.includes(tagParam.toLowerCase())) {
+        // Если это один из специальных тегов, добавляем его в activeCustomTag
+        if (!activeCustomTag.includes(tagParam.toLowerCase())) {
+          handleCustomTagChange(tagParam.toLowerCase());
         }
       } else {
         // Для других тегов используем обычный обработчик

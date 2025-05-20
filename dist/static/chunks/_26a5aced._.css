@@ -1190,6 +1190,42 @@ button.swiper-pagination-bullet {
   font-size: 12px;
 }
 
+.custom-tagsFilter .tagsFilter-tag--sale.tagsFilter-tag--active {
+  background-color: #ffca28;
+}
+
+.tagsFilter-tag--premium .tagsFilter-tag-title {
+  font-size: 12px;
+}
+
+.custom-tagsFilter .tagsFilter-tag--premium.tagsFilter-tag--active {
+  background-color: #7561e8;
+}
+
+.tagsFilter-tag--new .tagsFilter-tag-title {
+  font-size: 12px;
+}
+
+.custom-tagsFilter .tagsFilter-tag--new.tagsFilter-tag--active {
+  background-color: #4caf50;
+}
+
+.tagsFilter-tag--hit .tagsFilter-tag-title {
+  font-size: 12px;
+}
+
+.custom-tagsFilter .tagsFilter-tag--hit.tagsFilter-tag--active {
+  background-color: #ff6723;
+}
+
+.tagsFilter-tag--hot .tagsFilter-tag-title {
+  font-size: 12px;
+}
+
+.custom-tagsFilter .tagsFilter-tag--hot.tagsFilter-tag--active {
+  background-color: #ff5722;
+}
+
 
 /* [project]/styles/shared/search.css [app-client] (css) */
 .search-container {
