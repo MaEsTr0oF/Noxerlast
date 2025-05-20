@@ -4935,7 +4935,8 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                         className: "limited-products-grid",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$widgets$2f$sections$2f$ProductsSection$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                             isFavorites: false,
-                                            limit: productsLimit
+                                            limit: productsLimit,
+                                            importanceFilter: true
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
                                             lineNumber: 1254,
@@ -4974,12 +4975,12 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                     alt: ""
                                                 }, void 0, false, {
                                                     fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                    lineNumber: 1271,
+                                                    lineNumber: 1275,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1267,
+                                                lineNumber: 1271,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4993,7 +4994,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: product.Product_Name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1283,
+                                                                lineNumber: 1287,
                                                                 columnNumber: 25
                                                             }, this),
                                                             product.parameters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5005,7 +5006,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1288,
+                                                                lineNumber: 1292,
                                                                 columnNumber: 27
                                                             }, this),
                                                             product.selectedColor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5018,7 +5019,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         children: product.selectedColor.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1299,
+                                                                        lineNumber: 1303,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5028,19 +5029,19 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         }
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1302,
+                                                                        lineNumber: 1306,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1297,
+                                                                lineNumber: 1301,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1282,
+                                                        lineNumber: 1286,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5057,7 +5058,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1315,
+                                                                        lineNumber: 1319,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     product.selectedColor?.discount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5068,13 +5069,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1320,
+                                                                        lineNumber: 1324,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1314,
+                                                                lineNumber: 1318,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5088,7 +5089,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         children: "-"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1330,
+                                                                        lineNumber: 1334,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5096,7 +5097,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         children: product.quantity || 1
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1344,
+                                                                        lineNumber: 1348,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5106,25 +5107,25 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                         children: "+"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                        lineNumber: 1348,
+                                                                        lineNumber: 1352,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1326,
+                                                                lineNumber: 1330,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1313,
+                                                        lineNumber: 1317,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1281,
+                                                lineNumber: 1285,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5141,23 +5142,23 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                     className: "shoppingCart-product-delete-icon"
                                                 }, void 0, false, {
                                                     fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                    lineNumber: 1379,
+                                                    lineNumber: 1383,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1365,
+                                                lineNumber: 1369,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1262,
+                                        lineNumber: 1266,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                lineNumber: 1260,
+                                lineNumber: 1264,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -5171,7 +5172,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Контактная информация"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1390,
+                                                lineNumber: 1394,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5187,12 +5188,12 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                             className: `shoppingCart-form-contactInfo-fieldsContainer-input ${fioError ? "input-error" : ""}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                            lineNumber: 1396,
+                                                            lineNumber: 1400,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1395,
+                                                        lineNumber: 1399,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5207,24 +5208,24 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                             className: `shoppingCart-form-contactInfo-fieldsContainer-input ${phoneError ? "input-error" : ""}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                            lineNumber: 1406,
+                                                            lineNumber: 1410,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1405,
+                                                        lineNumber: 1409,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1394,
+                                                lineNumber: 1398,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1389,
+                                        lineNumber: 1393,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5235,7 +5236,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Способ доставки"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1420,
+                                                lineNumber: 1424,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5250,7 +5251,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 alt: ""
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1429,
+                                                                lineNumber: 1433,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5258,13 +5259,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "(выбор 97% клиентов)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1431,
+                                                                lineNumber: 1435,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1428,
+                                                        lineNumber: 1432,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5272,7 +5273,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         children: 'Доставка осуществляется транспортной компанией CDEK по тарифам компании. Нажмите "Выбрать адрес" и выберите пункт выдачи на карте'
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1436,
+                                                        lineNumber: 1440,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -5281,13 +5282,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         className: "shoppingCart-form-deliveryInfo-cdekButton-icon"
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1442,
+                                                        lineNumber: 1446,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1424,
+                                                lineNumber: 1428,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -5295,7 +5296,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Адрес доставки (или СДЕК)"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1449,
+                                                lineNumber: 1453,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5309,7 +5310,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         className: `shoppingCart-form-deliveryInfo-fullWidthInput ${cityError ? "input-error" : ""}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1454,
+                                                        lineNumber: 1458,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5325,12 +5326,12 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                     className: `shoppingCart-form-deliveryInfo-halfWidthInput ${houseError ? "input-error" : ""}`
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                    lineNumber: 1464,
+                                                                    lineNumber: 1468,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1463,
+                                                                lineNumber: 1467,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5341,19 +5342,19 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 className: "shoppingCart-form-deliveryInfo-halfWidthInput"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1472,
+                                                                lineNumber: 1476,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1462,
+                                                        lineNumber: 1466,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1453,
+                                                lineNumber: 1457,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5363,13 +5364,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 className: "shoppingCart-form-deliveryInfo-commentField"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1484,
+                                                lineNumber: 1488,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1419,
+                                        lineNumber: 1423,
                                         columnNumber: 17
                                     }, this),
                                     allowPostPayment && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5380,7 +5381,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Тип оплаты"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1494,
+                                                lineNumber: 1498,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5396,7 +5397,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Оплата онлайн в приложении"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1504,
+                                                                lineNumber: 1508,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5407,18 +5408,18 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                     className: "shoppingCart-form-paymentType-icon"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                    lineNumber: 1510,
+                                                                    lineNumber: 1514,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1508,
+                                                                lineNumber: 1512,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1499,
+                                                        lineNumber: 1503,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5431,7 +5432,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Оплата при получении"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1524,
+                                                                lineNumber: 1528,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5442,30 +5443,30 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                     className: "shoppingCart-form-paymentType-icon"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                    lineNumber: 1530,
+                                                                    lineNumber: 1534,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1528,
+                                                                lineNumber: 1532,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1519,
+                                                        lineNumber: 1523,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1498,
+                                                lineNumber: 1502,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1493,
+                                        lineNumber: 1497,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5476,7 +5477,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Форма оплаты"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1543,
+                                                lineNumber: 1547,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5490,7 +5491,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Оплата по СБП"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1549,
+                                                                lineNumber: 1553,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -5498,13 +5499,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 alt: ""
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1553,
+                                                                lineNumber: 1557,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1548,
+                                                        lineNumber: 1552,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5512,7 +5513,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         children: "После оформления заказа вы сможете получить реквизиты для оплаты по системе СБП"
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1556,
+                                                        lineNumber: 1560,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -5521,19 +5522,19 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         className: "shoppingCart-form-paymentInfo-sbpButton-icon"
                                                     }, void 0, false, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1561,
+                                                        lineNumber: 1565,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1547,
+                                                lineNumber: 1551,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1542,
+                                        lineNumber: 1546,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5544,7 +5545,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 children: "Промокод"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1570,
+                                                lineNumber: 1574,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5554,7 +5555,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                 className: "shoppingCart-form-totalInfo-input"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1574,
+                                                lineNumber: 1578,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5568,7 +5569,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Сумма заказа"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1583,
+                                                                lineNumber: 1587,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5579,13 +5580,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1587,
+                                                                lineNumber: 1591,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1582,
+                                                        lineNumber: 1586,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5596,7 +5597,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Доставка"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1593,
+                                                                lineNumber: 1597,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5607,13 +5608,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1597,
+                                                                lineNumber: 1601,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1592,
+                                                        lineNumber: 1596,
                                                         columnNumber: 21
                                                     }, this),
                                                     getSalePrice() > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5624,7 +5625,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Скидка"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1603,
+                                                                lineNumber: 1607,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5636,19 +5637,19 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1606,
+                                                                lineNumber: 1610,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1602,
+                                                        lineNumber: 1606,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1581,
+                                                lineNumber: 1585,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5662,7 +5663,7 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 children: "Итого"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1615,
+                                                                lineNumber: 1619,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5674,13 +5675,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                                lineNumber: 1619,
+                                                                lineNumber: 1623,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1614,
+                                                        lineNumber: 1618,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5692,19 +5693,19 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                        lineNumber: 1629,
+                                                        lineNumber: 1633,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                                lineNumber: 1613,
+                                                lineNumber: 1617,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1569,
+                                        lineNumber: 1573,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5720,12 +5721,12 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                             children: isSubmitting ? "Оформление заказа..." : "Оплатить заказ"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                            lineNumber: 1648,
+                                            lineNumber: 1652,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1639,
+                                        lineNumber: 1643,
                                         columnNumber: 17
                                     }, this),
                                     formError && !showErrorModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5733,13 +5734,13 @@ const ShoppingCartContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
                                         children: formError
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                        lineNumber: 1653,
+                                        lineNumber: 1657,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ShoppingCartContent.tsx",
-                                lineNumber: 1388,
+                                lineNumber: 1392,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -5914,6 +5915,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
     const [isAddingToCart, setIsAddingToCart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isAddToCartEnabled, setIsAddToCartEnabled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [errorMessage, setErrorMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [colorRequiredPopup, setColorRequiredPopup] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const infoCards = [
         {
             title: "Наши гарантии на товар",
@@ -6260,6 +6262,17 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
             behavior: "smooth"
         });
     }
+    // Функция для показа попапа при клике на заблокированную кнопку
+    function showColorRequiredPopup() {
+        // Если кнопка заблокирована из-за отсутствия выбранного цвета
+        if (targetProduct.colors?.length > 0 && !selectedColor) {
+            setColorRequiredPopup(true);
+            // Скрываем попап через 3 секунды
+            setTimeout(()=>{
+                setColorRequiredPopup(false);
+            }, 3000);
+        }
+    }
     if (isLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
             className: `main-container ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$detectIOS$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["detectIOS"])() ? "main-container--ios" : ""}`,
@@ -6267,17 +6280,17 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                 className: "flex items-center justify-center w-full h-full min-h-[60vh]",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$Loading$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                    lineNumber: 506,
+                    lineNumber: 520,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                lineNumber: 505,
+                lineNumber: 519,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-            lineNumber: 502,
+            lineNumber: 516,
             columnNumber: 7
         }, this);
     }
@@ -6291,17 +6304,17 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                     children: "Произошла ошибка при загрузке товара или товар не найден."
                 }, void 0, false, {
                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                    lineNumber: 518,
+                    lineNumber: 532,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                lineNumber: 517,
+                lineNumber: 531,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-            lineNumber: 514,
+            lineNumber: 528,
             columnNumber: 7
         }, this);
     }
@@ -6320,7 +6333,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$getTagLabel$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getTagLabel"])(targetProduct.marks[0].Mark_Name)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 569,
+                        lineNumber: 583,
                         columnNumber: 11
                     }, this) : null,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6342,17 +6355,17 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 className: "jsx-223c3f72d602c327"
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 596,
+                                lineNumber: 610,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                            lineNumber: 582,
+                            lineNumber: 596,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 576,
+                        lineNumber: 590,
                         columnNumber: 9
                     }, this),
                     mainImageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6370,17 +6383,17 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 className: "jsx-223c3f72d602c327" + " " + "product-image-item"
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 616,
+                                lineNumber: 630,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                            lineNumber: 615,
+                            lineNumber: 629,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 614,
+                        lineNumber: 628,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "jsx-223c3f72d602c327" + " " + "product-image",
@@ -6417,12 +6430,12 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             className: "jsx-223c3f72d602c327" + " " + "product-image-item"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 658,
+                                            lineNumber: 672,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 657,
+                                        lineNumber: 671,
                                         columnNumber: 21
                                     }, this);
                                 }
@@ -6439,12 +6452,12 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             className: "jsx-223c3f72d602c327" + " " + "product-image-item"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 671,
+                                            lineNumber: 685,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 670,
+                                        lineNumber: 684,
                                         columnNumber: 21
                                     }, this);
                                 }
@@ -6474,22 +6487,22 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                                     className: "jsx-223c3f72d602c327" + " " + "product-image-item"
                                                 }, void 0, false, {
                                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                    lineNumber: 702,
+                                                    lineNumber: 716,
                                                     columnNumber: 27
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                lineNumber: 701,
+                                                lineNumber: 715,
                                                 columnNumber: 25
                                             }, this)
                                         }, `slide-${index}-${image.Image_ID || Math.random()}`, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 698,
+                                            lineNumber: 712,
                                             columnNumber: 23
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 685,
+                                    lineNumber: 699,
                                     columnNumber: 19
                                 }, this);
                             } catch (error) {
@@ -6501,25 +6514,25 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                         className: "jsx-223c3f72d602c327" + " " + "product-image-item"
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 718,
+                                        lineNumber: 732,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 717,
+                                    lineNumber: 731,
                                     columnNumber: 19
                                 }, this);
                             }
                         })()
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 629,
+                        lineNumber: 643,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                lineNumber: 566,
+                lineNumber: 580,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6530,7 +6543,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                         children: targetProduct.Product_Name || "Неизвестный товар"
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 732,
+                        lineNumber: 746,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6544,7 +6557,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 737,
+                                lineNumber: 751,
                                 columnNumber: 11
                             }, this),
                             selectedColor?.discount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6555,13 +6568,13 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 740,
+                                lineNumber: 754,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 736,
+                        lineNumber: 750,
                         columnNumber: 9
                     }, this),
                     targetProduct.parameters?.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6572,7 +6585,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 children: selectedParameterType
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 747,
+                                lineNumber: 761,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6599,29 +6612,29 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                                 children: param.parameter_string || "Без названия"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                lineNumber: 775,
+                                                lineNumber: 789,
                                                 columnNumber: 23
                                             }, this)
                                         }, `param-${param.Parameter_ID || Math.random()}`, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 759,
+                                            lineNumber: 773,
                                             columnNumber: 21
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 749,
+                                    lineNumber: 763,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 748,
+                                lineNumber: 762,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 746,
+                        lineNumber: 760,
                         columnNumber: 11
                     }, this),
                     targetProduct.colors?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6632,7 +6645,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 children: "Цвет"
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 789,
+                                lineNumber: 803,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6651,7 +6664,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                                     className: "jsx-223c3f72d602c327" + " " + "color-circle"
                                                 }, void 0, false, {
                                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                    lineNumber: 798,
+                                                    lineNumber: 812,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6659,29 +6672,29 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                                     children: color.Color_Name
                                                 }, void 0, false, {
                                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                    lineNumber: 802,
+                                                    lineNumber: 816,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, `color-${color.Color_ID || Math.random()}`, true, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 793,
+                                            lineNumber: 807,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 791,
+                                    lineNumber: 805,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 790,
+                                lineNumber: 804,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 788,
+                        lineNumber: 802,
                         columnNumber: 11
                     }, this),
                     targetProduct.reviews_video?.length > 0 && targetProduct.reviews_video[0]?.Video_URL && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6700,7 +6713,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                         className: "jsx-223c3f72d602c327"
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 815,
+                                        lineNumber: 829,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6708,13 +6721,13 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                         children: "Смотреть видео-обзор"
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 823,
+                                        lineNumber: 837,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 814,
+                                lineNumber: 828,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -6726,13 +6739,13 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 className: "jsx-223c3f72d602c327" + " " + "expand-icon"
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 826,
+                                lineNumber: 840,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 813,
+                        lineNumber: 827,
                         columnNumber: 13
                     }, this),
                     targetProduct.extras?.length > 0 && targetProduct.extras[0]?.Characteristics && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6747,7 +6760,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                         children: __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$DataStore$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dataStore"].data?.special_project_parameters?.product_page_accordeon_item_header_12_value || "Описание"
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 846,
+                                        lineNumber: 860,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6762,18 +6775,18 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             className: "jsx-223c3f72d602c327" + " " + "description-expand-icon"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 855,
+                                            lineNumber: 869,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 851,
+                                        lineNumber: 865,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 842,
+                                lineNumber: 856,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6782,13 +6795,13 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 children: targetProduct.extras[0].Characteristics
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 866,
+                                lineNumber: 880,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 839,
+                        lineNumber: 853,
                         columnNumber: 13
                     }, this),
                     targetProduct.extras?.length > 0 && targetProduct.extras[0]?.Kit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6803,7 +6816,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                         children: __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$DataStore$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dataStore"].data?.special_project_parameters?.product_page_accordeon_item_header_34_value || "Характеристики"
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 877,
+                                        lineNumber: 891,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6818,18 +6831,18 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             className: "jsx-223c3f72d602c327" + " " + "specs-expand-icon"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 887,
+                                            lineNumber: 901,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 883,
+                                        lineNumber: 897,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 876,
+                                lineNumber: 890,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6838,13 +6851,13 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 children: targetProduct.extras[0].Kit
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 898,
+                                lineNumber: 912,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 873,
+                        lineNumber: 887,
                         columnNumber: 11
                     }, this),
                     __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$DataStore$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dataStore"].data?.special_project_parameters_badges?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6865,7 +6878,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             children: cardInfo.title
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 930,
+                                            lineNumber: 944,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -6877,24 +6890,24 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                             className: "jsx-223c3f72d602c327" + " " + "info-icon"
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 932,
+                                            lineNumber: 946,
                                             columnNumber: 23
                                         }, this)
                                     ]
                                 }, badge.id || index, true, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 925,
+                                    lineNumber: 939,
                                     columnNumber: 21
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                            lineNumber: 906,
+                            lineNumber: 920,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 905,
+                        lineNumber: 919,
                         columnNumber: 11
                     }, this),
                     targetProduct.reviews?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6905,7 +6918,7 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                 children: "Отзывы"
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 949,
+                                lineNumber: 963,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swiper$2f$swiper$2d$react$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Swiper"], {
@@ -6934,22 +6947,22 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                                 className: "jsx-223c3f72d602c327"
                                             }, void 0, false, {
                                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                                lineNumber: 962,
+                                                lineNumber: 976,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                            lineNumber: 961,
+                                            lineNumber: 975,
                                             columnNumber: 19
                                         }, this)
                                     }, review.Photo_ID || Math.random(), false, {
                                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                        lineNumber: 960,
+                                        lineNumber: 974,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 951,
+                                lineNumber: 965,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6960,30 +6973,35 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                                     children: "Смотреть все отзывы"
                                 }, void 0, false, {
                                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                    lineNumber: 975,
+                                    lineNumber: 989,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                                lineNumber: 974,
+                                lineNumber: 988,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 948,
+                        lineNumber: 962,
                         columnNumber: 11
                     }, this),
                     targetProduct.reviews_video?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$entities$2f$VideoReview$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         video: targetProduct.reviews_video[0]
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 981,
+                        lineNumber: 995,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: handleAddToCart,
-                        disabled: !isAddToCartEnabled || targetProduct.colors?.length > 0 && !selectedColor,
+                        onClick: ()=>{
+                            if (!isAddToCartEnabled || targetProduct.colors?.length > 0 && !selectedColor) {
+                                showColorRequiredPopup();
+                            } else {
+                                handleAddToCart();
+                            }
+                        },
                         className: "jsx-223c3f72d602c327" + " " + `add-to-cart-button click-effect-block 
             ${isAddingToCart ? "add-to-cart-button--added" : ""}
             ${!isAddToCartEnabled || targetProduct.colors?.length > 0 && !selectedColor ? "add-to-cart-button--disabled" : ""}
@@ -6993,18 +7011,18 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                             children: isAddingToCart ? "В корзину" : "Добавить в корзину"
                         }, void 0, false, {
                             fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                            lineNumber: 995,
+                            lineNumber: 1014,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                        lineNumber: 984,
+                        lineNumber: 998,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                lineNumber: 731,
+                lineNumber: 745,
                 columnNumber: 7
             }, this),
             errorMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7014,18 +7032,33 @@ const ProductContent = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_
                     children: errorMessage
                 }, void 0, false, {
                     fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                    lineNumber: 1004,
+                    lineNumber: 1023,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-                lineNumber: 1003,
+                lineNumber: 1022,
+                columnNumber: 9
+            }, this),
+            colorRequiredPopup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-223c3f72d602c327" + " " + "color-required-popup",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "jsx-223c3f72d602c327",
+                    children: "Пожалуйста, выберите цвет товара"
+                }, void 0, false, {
+                    fileName: "[project]/widgets/pageContents/ProductContent.tsx",
+                    lineNumber: 1030,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/widgets/pageContents/ProductContent.tsx",
+                lineNumber: 1029,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/widgets/pageContents/ProductContent.tsx",
-        lineNumber: 527,
+        lineNumber: 541,
         columnNumber: 5
     }, this);
 });

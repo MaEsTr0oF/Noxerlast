@@ -152,7 +152,7 @@
 .parameters-section {
   margin-top: 16px;
 }
-.parameters-content{
+.parameters-content {
   margin-left: -10px;
   width: calc(100% + 20px);
 }
@@ -494,7 +494,9 @@
   background-color: rgba(41, 41, 40, 1);
   height: 54px;
   z-index: 100;
-  transition: background-color .3s ease, transform .2s;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s;
 }
 
 .add-to-cart-button.add-to-cart-button--added {
@@ -624,26 +626,51 @@
 
 .error-popup {
   position: fixed;
-  bottom: 120px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 59, 48, 0.9);
+  background-color: rgba(255, 77, 79, 0.9);
   color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
   z-index: 1000;
-  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
   animation:
-    fadeIn 0.3s ease,
-    fadeOut 0.3s ease 2.7s;
+    fadeIn 0.3s forwards,
+    fadeOut 0.3s forwards 2.7s;
 }
 
 .error-popup p {
   margin: 0;
   font-size: 14px;
   font-weight: 500;
+}
+
+.color-required-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(41, 41, 40, 0.9);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 80%;
+  animation:
+    fadeIn 0.3s forwards,
+    fadeOut 0.3s forwards 2.7s;
+}
+
+.color-required-popup p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  text-wrap: nowrap;
 }
 
 @keyframes fadeIn {

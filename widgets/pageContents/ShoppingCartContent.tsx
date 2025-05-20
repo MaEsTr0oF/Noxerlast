@@ -1251,7 +1251,11 @@ const ShoppingCartContent = observer(() => {
               <div className="recommended-products">
                 <h2 className="recommended-title">Рекомендуем</h2>
                 <div className="limited-products-grid">
-                  <ProductsSection isFavorites={false} limit={productsLimit} />
+                  <ProductsSection
+                    isFavorites={false}
+                    limit={productsLimit}
+                    importanceFilter={true}
+                  />
                 </div>
               </div>
             </div>

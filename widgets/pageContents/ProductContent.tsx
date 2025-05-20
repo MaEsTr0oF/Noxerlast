@@ -70,6 +70,8 @@ const ProductContent = observer(() => {
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const [colorRequiredPopup, setColorRequiredPopup] = useState<boolean>(false);
+
   const infoCards = [
     {
       title: "Наши гарантии на товар",
@@ -495,6 +497,18 @@ const ProductContent = observer(() => {
   function scrollToVideo() {
     const e = document.getElementById("Video-review");
     if (e) e.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Функция для показа попапа при клике на заблокированную кнопку
+  function showColorRequiredPopup() {
+    // Если кнопка заблокирована из-за отсутствия выбранного цвета
+    if (targetProduct.colors?.length > 0 && !selectedColor) {
+      setColorRequiredPopup(true);
+      // Скрываем попап через 3 секунды
+      setTimeout(() => {
+        setColorRequiredPopup(false);
+      }, 3000);
+    }
   }
 
   if (isLoading) {
@@ -982,15 +996,20 @@ const ProductContent = observer(() => {
         )}
 
         <button
-          onClick={handleAddToCart}
+          onClick={() => {
+            if (
+              !isAddToCartEnabled ||
+              (targetProduct.colors?.length > 0 && !selectedColor)
+            ) {
+              showColorRequiredPopup();
+            } else {
+              handleAddToCart();
+            }
+          }}
           className={`add-to-cart-button click-effect-block 
             ${isAddingToCart ? "add-to-cart-button--added" : ""}
             ${!isAddToCartEnabled || (targetProduct.colors?.length > 0 && !selectedColor) ? "add-to-cart-button--disabled" : ""}
             ${detectIOS() ? "add-to-cart-button--ios" : ""}`}
-          disabled={
-            !isAddToCartEnabled ||
-            (targetProduct.colors?.length > 0 && !selectedColor)
-          }
         >
           <p className="add-to-cart-text">
             {isAddingToCart ? "В корзину" : "Добавить в корзину"}
@@ -1002,6 +1021,13 @@ const ProductContent = observer(() => {
       {errorMessage && (
         <div className="error-popup">
           <p>{errorMessage}</p>
+        </div>
+      )}
+
+      {/* Всплывающее сообщение о необходимости выбора цвета */}
+      {colorRequiredPopup && (
+        <div className="color-required-popup">
+          <p>Пожалуйста, выберите цвет товара</p>
         </div>
       )}
     </main>
