@@ -27,6 +27,7 @@ import { detectIOS } from "@/utils/detectIOS";
 import { getTagBackground } from "@/utils/getTagBackground";
 import { getTagLabel } from "@/utils/getTagLabel";
 import VideoReview from "@/entities/VideoReview";
+import Accordion from "@/shared/Accordion";
 
 const ProductContent = observer(() => {
   const params = useParams<{ productId: string }>();
@@ -91,21 +92,6 @@ const ProductContent = observer(() => {
     },
   ];
 
-  function toggleHandler(
-    refCurrent: HTMLParagraphElement,
-    isOpen: boolean,
-    setIsOpen: (v: boolean) => void
-  ) {
-    if (isOpen) {
-      setIsOpen(false);
-      refCurrent.style.marginTop = `0px`;
-      refCurrent.style.maxHeight = `0px`;
-    } else {
-      setIsOpen(true);
-      refCurrent.style.marginTop = `15px`;
-      refCurrent.style.maxHeight = `${refCurrent.scrollHeight}px`;
-    }
-  }
 
   function addSettingItem(settingItem: any, paramName: string) {
     if (!settingItem) return;
@@ -188,19 +174,6 @@ const ProductContent = observer(() => {
     );
   }
 
-  function toggleDescriptionHandler() {
-    if (descriptionRef.current)
-      toggleHandler(
-        descriptionRef.current,
-        isDescriptionOpen,
-        setIsDescriptionOpen
-      );
-  }
-
-  function toggleSpecsHandler() {
-    if (specsRef.current)
-      toggleHandler(specsRef.current, isSpecsOpen, setIsSpecsOpen);
-  }
 
   function handleAddToCart() {
     if (!targetProduct?.Product_ID) return;
@@ -849,71 +822,34 @@ const ProductContent = observer(() => {
           )}
 
         {targetProduct.extras?.length > 0 &&
-          targetProduct.extras[0]?.Characteristics && (
-            <div
-              className={`description-block ${isDescriptionOpen ? "description-block--open" : ""}`}
-            >
-              <div
-                onClick={toggleDescriptionHandler}
-                className="description-header"
-              >
-                <h3 className="description-title">
-                  {dataStore.data?.special_project_parameters
-                    ?.product_page_accordeon_item_header_12_value || "Описание"}
-                </h3>
-
-                <button
-                  onClick={toggleDescriptionHandler}
-                  className="description-expand-button cursor-pointer"
-                >
-                  <img
-                    src={`${iconsBaseLink}dark-expand-icon.svg`}
-                    className="description-expand-icon"
-                    alt="Развернуть"
-                    onError={(e) => {
-                      e.currentTarget.src = "/placeholder-icon.svg";
-                    }}
-                  />
-                </button>
-              </div>
-
-              <p ref={descriptionRef} className="description-text">
-                {targetProduct.extras[0].Characteristics}
-              </p>
-            </div>
+        <>  
+        {console.log(JSON.parse(JSON.stringify(targetProduct.extras[0])))}
+        {targetProduct.extras[0]?.Characteristics && (
+            <Accordion 
+            text={targetProduct.extras[0].Characteristics}
+            title={dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_12_value || "Характеристики"}
+            />
           )}
-
-        {targetProduct.extras?.length > 0 && targetProduct.extras[0]?.Kit && (
-          <div
-            className={`specs-block ${isSpecsOpen ? "specs-block--open" : ""}`}
-          >
-            <div onClick={toggleSpecsHandler} className="specs-header">
-              <h3 className="specs-title">
-                {dataStore.data?.special_project_parameters
-                  ?.product_page_accordeon_item_header_34_value ||
-                  "Характеристики"}
-              </h3>
-
-              <button
-                onClick={toggleSpecsHandler}
-                className="specs-expand-button cursor-pointer"
-              >
-                <img
-                  src={`${iconsBaseLink}dark-expand-icon.svg`}
-                  className="specs-expand-icon"
-                  alt="Развернуть"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder-icon.svg";
-                  }}
-                />
-              </button>
-            </div>
-
-            <p ref={specsRef} className="specs-text">
-              {targetProduct.extras[0].Kit}
-            </p>
-          </div>
-        )}
+        {targetProduct.extras[0]?.Kit && (
+            <Accordion 
+            text={targetProduct.extras[0].Kit}
+            title={dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_12_description || "Описание"}
+            />
+          )}
+        {targetProduct.extras[0]?.Offer && (
+            <Accordion 
+            text={targetProduct.extras[0].Offer}
+            title={dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_34_value || "Рекомендации"}
+            />
+          )}
+        {targetProduct.extras[0]?.Delivery && (
+            <Accordion 
+            text={targetProduct.extras[0].Delivery}
+            title={dataStore.data?.special_project_parameters?.product_page_accordeon_item_header_34_description || "Параметры"}
+            />
+          )}
+        </>
+          }
 
         {dataStore.data?.special_project_parameters_badges?.length > 0 && (
           <div className="info-cards ">

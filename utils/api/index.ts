@@ -7,9 +7,9 @@ const getBaseUrl = () => {
     return "/api";
   }
 
-  return `${window.location.origin}/api`;
   //return `https://noxer-ai.ru/api`;
-  // return "https://yamal-store.ru/api";
+  return "https://yamal-store.ru/api";
+  return `${window.location.origin}/api`;
 };
 
 export const apiInstance = axios.create({
