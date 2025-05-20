@@ -22,8 +22,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const [visibleTagCount, setVisibleTagCount] = useState(0);
-    const [initialCalculatedTagCount, setInitialCalculatedTagCount] =
-      useState(0);
+    const [initialCalculatedTagCount, setInitialCalculatedTagCount] = useState(0);
     const [allTagsAreVisible, setAllTagsAreVisible] = useState(false);
     const [tagWidths, setTagWidths] = useState<number[]>([]);
     const [movingTag, setMovingTag] = useState<string | null>(null);
@@ -92,6 +91,36 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
         }
       }
     };
+
+    
+    // Сортируем теги так, чтобы "sale" и активные были вначале
+    const allTagsArray = Object.entries(activeCategoryTags).sort((a, b) => {
+      // Специальный тег "sale" всегда в начале
+      if (a[0].toLowerCase() === "sale") return -1;
+      if (b[0].toLowerCase() === "sale") return 1;
+
+      // Затем идут активные теги
+      const isAActive = activeCustomTag.includes(a[0]);
+      const isBActive = activeCustomTag.includes(b[0]);
+      if (isAActive && !isBActive) return -1;
+      if (!isAActive && isBActive) return 1;
+      return 0;
+    });
+
+    const tagsToDisplay = allTagsArray.slice(
+      0,
+      visibleTagCount === 0 &&
+        !allTagsAreVisible &&
+        initialCalculatedTagCount === 0
+        ? 0
+        : visibleTagCount
+    );
+    const showMoreButton =
+      !allTagsAreVisible &&
+      allTagsArray.length > initialCalculatedTagCount &&
+      initialCalculatedTagCount > 0;
+    const showHideButton =
+      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
 
     useEffect(() => {
       setIsClient(true);
@@ -423,6 +452,7 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       }
     }, [isClient, isLoading]);
 
+
     if (!isClient) {
       return (
         <div className="tagsFilter custom-tagsFilter tagsFilter-loading">
@@ -446,35 +476,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
         </div>
       );
     }
-
-    // Сортируем теги так, чтобы "sale" и активные были вначале
-    const allTagsArray = Object.entries(activeCategoryTags).sort((a, b) => {
-      // Специальный тег "sale" всегда в начале
-      if (a[0].toLowerCase() === "sale") return -1;
-      if (b[0].toLowerCase() === "sale") return 1;
-
-      // Затем идут активные теги
-      const isAActive = activeCustomTag.includes(a[0]);
-      const isBActive = activeCustomTag.includes(b[0]);
-      if (isAActive && !isBActive) return -1;
-      if (!isAActive && isBActive) return 1;
-      return 0;
-    });
-
-    const tagsToDisplay = allTagsArray.slice(
-      0,
-      visibleTagCount === 0 &&
-        !allTagsAreVisible &&
-        initialCalculatedTagCount === 0
-        ? 0
-        : visibleTagCount
-    );
-    const showMoreButton =
-      !allTagsAreVisible &&
-      allTagsArray.length > initialCalculatedTagCount &&
-      initialCalculatedTagCount > 0;
-    const showHideButton =
-      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
 
     return (
       <div className="tagsFilter custom-tagsFilter">

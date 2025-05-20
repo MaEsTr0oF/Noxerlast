@@ -67,8 +67,8 @@
 .custom-tagsFilter .tagsFilter-tag--active {
   background-color: rgba(60, 60, 60, 1);
   color: #ffffff;
-  transform: scale(1.05); /* Небольшое увеличение активного тега */
-  z-index: 2; /* Поверх других элементов */
+  transform: scale(1);
+  z-index: 2; 
 }
 .custom-tagsFilter .tagsFilter-tag--active .tagsFilter-tag-count {
   color: #c4c4c1;
@@ -149,10 +149,11 @@
   content: "";
   position: absolute;
   top: 0;
-  left: -18px;
+  left: -20px;
   background: linear-gradient(to right, #00000000 0%, #f1f1f1 100%);
   width: 20px;
   height: 100%;
+  z-index: 5;
 }
 .tagsFilter-hideButton {
   font-size: 10px;

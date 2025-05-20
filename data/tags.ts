@@ -1,11 +1,7 @@
 export const tags = [
   {
     id: 5,
-    title: "Популярные",
-  },
-  {
-    id: 1,
-    title: "Новые",
+    title: "Рекомендуемые",
   },
   {
     id: 3,
