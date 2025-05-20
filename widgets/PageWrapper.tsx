@@ -12,22 +12,6 @@ const PageWrapper: React.FC<{ children: any }> = ({ children }) => {
   const location = useLocation();
   const isProductPage = location.pathname.includes("/product/");
 
-  function clickBotHandler() {
-    let username =
-      dataStore.data?.special_project_parameters?.telegram_bot_username_value ||
-      "noxerai_bot";
-
-    // Если имя пользователя начинается с @, удаляем этот символ для URL
-    if (username.startsWith("@")) {
-      username = username.substring(1);
-    }
-
-    const link = `https://t.me/${username}`;
-    if (link) {
-      window.open(link, "_blank");
-    }
-  }
-
   const getProjectName = () => {
     return (
       dataStore.data?.special_project_parameters?.project_name_value ||
@@ -50,8 +34,7 @@ const PageWrapper: React.FC<{ children: any }> = ({ children }) => {
         <p className="footer-text">
           Разработано на платформе Noxer <br />
           <a
-            href="#"
-            onClick={clickBotHandler}
+            href="https://t.me/noxerai_bot`"
             className="index-telegram-open-special_tg footer-link"
           >
             @{getProjectName()}
