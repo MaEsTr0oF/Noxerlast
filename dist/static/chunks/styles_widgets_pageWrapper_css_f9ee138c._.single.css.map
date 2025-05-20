@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/widgets/pageWrapper.css"],"sourcesContent":[".wrapper-footer.wrapper-footer-productPage{\r\n  padding-top: 15px;\r\n  padding-bottom: 140px;\r\n}\r\n.wrapper-footer.wrapper-footer-productPage.wrapper-footer--ios{\r\n  padding-bottom: 150px;\r\n}\r\n\r\n.wrapper-footer {\r\n  padding-top: 20px;\r\n  padding-bottom: 78px;\r\n}\r\n.wrapper-footer.wrapper-footer--ios{\r\n  padding-bottom: 85px;\r\n}\r\n\r\n.footer-text {\r\n  color: #292928;\r\n  font-size: 8px;\r\n  text-align: center;\r\n  font-weight: 400;\r\n}\r\n\r\n.footer-link {\r\n  color: #1e96c8;\r\n  outline: none;\r\n}\r\n"],"names":[],"mappings":"AAAA;;;;;AAIA;;;;AAIA;;;;;AAIA;;;;AAIA;;;;;;;AAOA"}}]
-}
