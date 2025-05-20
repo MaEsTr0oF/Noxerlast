@@ -22,7 +22,8 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
     const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const [visibleTagCount, setVisibleTagCount] = useState(0);
-    const [initialCalculatedTagCount, setInitialCalculatedTagCount] = useState(0);
+    const [initialCalculatedTagCount, setInitialCalculatedTagCount] =
+      useState(0);
     const [allTagsAreVisible, setAllTagsAreVisible] = useState(false);
     const [tagWidths, setTagWidths] = useState<number[]>([]);
     const [movingTag, setMovingTag] = useState<string | null>(null);
@@ -91,36 +92,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
         }
       }
     };
-
-    
-    // Сортируем теги так, чтобы "sale" и активные были вначале
-    const allTagsArray = Object.entries(activeCategoryTags).sort((a, b) => {
-      // Специальный тег "sale" всегда в начале
-      if (a[0].toLowerCase() === "sale") return -1;
-      if (b[0].toLowerCase() === "sale") return 1;
-
-      // Затем идут активные теги
-      const isAActive = activeCustomTag.includes(a[0]);
-      const isBActive = activeCustomTag.includes(b[0]);
-      if (isAActive && !isBActive) return -1;
-      if (!isAActive && isBActive) return 1;
-      return 0;
-    });
-
-    const tagsToDisplay = allTagsArray.slice(
-      0,
-      visibleTagCount === 0 &&
-        !allTagsAreVisible &&
-        initialCalculatedTagCount === 0
-        ? 0
-        : visibleTagCount
-    );
-    const showMoreButton =
-      !allTagsAreVisible &&
-      allTagsArray.length > initialCalculatedTagCount &&
-      initialCalculatedTagCount > 0;
-    const showHideButton =
-      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
 
     useEffect(() => {
       setIsClient(true);
@@ -354,53 +325,33 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
             );
           }
 
-          // Проверяем, есть ли "sale" в активных тегах
-          const isSaleActive = activeCustomTag.includes("sale");
+          // Доступные специальные теги
+          const specialTags = ["sale", "premium", "new", "hit", "hot"];
 
-          // Находим товары со скидкой
-          const saleProducts = filteredProducts.filter(
-            (product: Product) =>
-              product.marks &&
-              Array.isArray(product.marks) &&
-              product.marks.some(
-                (mark: ProductMark) =>
-                  mark.Mark_Name && mark.Mark_Name.toLowerCase() === "sale"
-              )
-          );
+          // Добавляем все специальные теги в categoryTags
+          specialTags.forEach((specialTag) => {
+            // Проверяем, активен ли этот тег
+            const isTagActive = activeCustomTag.includes(specialTag);
 
-          saleItemsCount = saleProducts.length;
+            // Находим товары с этим тегом
+            const taggedProducts = filteredProducts.filter(
+              (product: Product) =>
+                product.marks &&
+                Array.isArray(product.marks) &&
+                product.marks.some(
+                  (mark: ProductMark) =>
+                    mark.Mark_Name &&
+                    mark.Mark_Name.toLowerCase() === specialTag
+                )
+            );
 
-          // Если "sale" активен, перестраиваем список тегов
-          if (isSaleActive && saleItemsCount > 0) {
-            // Собираем теги, которые есть в товарах со скидкой
-            const tagsInSaleProducts: { [key: string]: number } = {};
+            const taggedItemsCount = taggedProducts.length;
 
-            // Всегда добавляем "sale" тег
-            tagsInSaleProducts["sale"] = saleItemsCount;
-
-            // Подсчитываем встречаемость других тегов в товарах со скидкой
-            saleProducts.forEach((product: Product) => {
-              if (product.tags && Array.isArray(product.tags)) {
-                product.tags.forEach((tag) => {
-                  if (tag.toLowerCase() !== "sale") {
-                    // Исключаем сам тег sale
-                    if (tagsInSaleProducts[tag]) {
-                      tagsInSaleProducts[tag]++;
-                    } else {
-                      tagsInSaleProducts[tag] = 1;
-                    }
-                  }
-                });
-              }
-            });
-
-            // Заменяем список тегов только на те, которые есть в товарах со скидкой
-            categoryTags = tagsInSaleProducts;
-          }
-          // Если "sale" не активен, добавляем его как обычно
-          else if (saleItemsCount > 0) {
-            categoryTags["sale"] = saleItemsCount;
-          }
+            // Если тег активен или есть товары с этим тегом, добавляем его в categoryTags
+            if ((isTagActive && taggedItemsCount > 0) || taggedItemsCount > 0) {
+              categoryTags[specialTag] = taggedItemsCount;
+            }
+          });
         }
 
         setActiveCategoryTags(categoryTags);
@@ -452,7 +403,6 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       }
     }, [isClient, isLoading]);
 
-
     if (!isClient) {
       return (
         <div className="tagsFilter custom-tagsFilter tagsFilter-loading">
@@ -477,6 +427,50 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       );
     }
 
+    // Сортируем теги так, чтобы специальные теги и активные были вначале
+    const allTagsArray = Object.entries(activeCategoryTags).sort((a, b) => {
+      // Список специальных тегов
+      const specialTags = ["sale", "premium", "new", "hit", "hot"];
+
+      // Проверяем, являются ли теги специальными
+      const isASpecial = specialTags.includes(a[0].toLowerCase());
+      const isBSpecial = specialTags.includes(b[0].toLowerCase());
+
+      // Если оба тега специальные, сортируем по порядку в массиве specialTags
+      if (isASpecial && isBSpecial) {
+        return (
+          specialTags.indexOf(a[0].toLowerCase()) -
+          specialTags.indexOf(b[0].toLowerCase())
+        );
+      }
+
+      // Специальные теги всегда в начале
+      if (isASpecial) return -1;
+      if (isBSpecial) return 1;
+
+      // Затем идут активные теги
+      const isAActive = activeCustomTag.includes(a[0]);
+      const isBActive = activeCustomTag.includes(b[0]);
+      if (isAActive && !isBActive) return -1;
+      if (!isAActive && isBActive) return 1;
+      return 0;
+    });
+
+    const tagsToDisplay = allTagsArray.slice(
+      0,
+      visibleTagCount === 0 &&
+        !allTagsAreVisible &&
+        initialCalculatedTagCount === 0
+        ? 0
+        : visibleTagCount
+    );
+    const showMoreButton =
+      !allTagsAreVisible &&
+      allTagsArray.length > initialCalculatedTagCount &&
+      initialCalculatedTagCount > 0;
+    const showHideButton =
+      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
+
     return (
       <div className="tagsFilter custom-tagsFilter">
         <div
@@ -493,13 +487,27 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
               className={`tagsFilter-tag 
                 ${activeCustomTag.includes(tagName) ? "tagsFilter-tag--active" : ""} 
                 ${tagName.toLowerCase() === "sale" ? "tagsFilter-tag--sale" : ""}
+                ${tagName.toLowerCase() === "premium" ? "tagsFilter-tag--premium" : ""}
+                ${tagName.toLowerCase() === "new" ? "tagsFilter-tag--new" : ""}
+                ${tagName.toLowerCase() === "hit" ? "tagsFilter-tag--hit" : ""}
+                ${tagName.toLowerCase() === "hot" ? "tagsFilter-tag--hot" : ""}
                 ${movingTag === tagName ? "tagsFilter-tag--moving-front" : ""}
                 ${movingTag && movingTag !== tagName && index < 3 ? "tagsFilter-tag--shifting" : ""}
               `}
               onClick={() => handleTagClick(tagName)}
             >
               <p className="tagsFilter-tag-title">
-                {tagName.toLowerCase() === "sale" ? "Sale" : tagName}
+                {tagName.toLowerCase() === "sale"
+                  ? "Sale"
+                  : tagName.toLowerCase() === "premium"
+                    ? "Premium"
+                    : tagName.toLowerCase() === "new"
+                      ? "New"
+                      : tagName.toLowerCase() === "hit"
+                        ? "Хит"
+                        : tagName.toLowerCase() === "hot"
+                          ? "Hot"
+                          : tagName}
                 {!activeCustomTag.includes(tagName) ? (
                   <span className="tagsFilter-tag-count">{count}</span>
                 ) : (

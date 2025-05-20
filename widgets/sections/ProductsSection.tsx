@@ -97,38 +97,53 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
       if (!filters || filters.length === 0) return products;
 
       const filteredProducts = products.filter((product) => {
-        // Разделим фильтры на "sale" и остальные кастомные теги
-        const hasSaleFilter = filters.includes("sale");
-        const otherFilters = filters.filter((filter) => filter !== "sale");
+        // Доступные специальные теги
+        const specialTags = ["sale", "premium", "new", "hit", "hot"];
 
-        // Проверим, соответствует ли товар фильтру "sale", если он активен
-        let matchesSale = true;
-        if (hasSaleFilter) {
-          const hasSaleMark =
-            product.marks &&
-            Array.isArray(product.marks) &&
-            product.marks.some((mark: any) => {
-              const isMatch =
-                mark.Mark_Name && mark.Mark_Name.toLowerCase() === "sale";
-              return isMatch;
-            });
+        // Разделим фильтры на специальные теги и обычные теги
+        const specialFilters = filters.filter((filter) =>
+          specialTags.includes(filter)
+        );
+        const regularFilters = filters.filter(
+          (filter) => !specialTags.includes(filter)
+        );
 
-          matchesSale = hasSaleMark;
+        // Проверяем соответствие товара специальным тегам
+        let matchesSpecialTags = true;
+
+        if (specialFilters.length > 0) {
+          // Товар должен соответствовать хотя бы одному из выбранных специальных тегов (логика "ИЛИ")
+          matchesSpecialTags = specialFilters.some((filter) => {
+            return (
+              product.marks &&
+              Array.isArray(product.marks) &&
+              product.marks.some(
+                (mark: any) =>
+                  mark.Mark_Name &&
+                  mark.Mark_Name.toLowerCase() === filter.toLowerCase()
+              )
+            );
+          });
         }
 
-        // Проверим, соответствует ли товар другим кастомным тегам, если они есть
-        let matchesOtherTags = true;
-        if (otherFilters.length > 0) {
-          // Товар должен соответствовать хотя бы одному из выбранных тегов
-          matchesOtherTags =
+        // Проверяем соответствие товара обычным тегам
+        let matchesRegularTags = true;
+
+        if (regularFilters.length > 0) {
+          // Товар должен соответствовать хотя бы одному из выбранных обычных тегов
+          matchesRegularTags =
             product.tags &&
             Array.isArray(product.tags) &&
-            otherFilters.some((filter) => product.tags.includes(filter));
+            regularFilters.some((filter) => product.tags.includes(filter));
         }
 
-        // В режиме отображения товаров со скидкой с дополнительными тегами:
-        // товар должен иметь метку sale И соответствовать хотя бы одному из выбранных тегов
-        return matchesSale && matchesOtherTags;
+        // Если есть фильтры любого типа, товар должен соответствовать хотя бы одному из них (логика "ИЛИ")
+        if (specialFilters.length > 0 && regularFilters.length > 0) {
+          return matchesSpecialTags || matchesRegularTags;
+        }
+
+        // Если есть только один тип фильтров, используем соответствующее условие
+        return matchesSpecialTags && matchesRegularTags;
       });
 
       return filteredProducts;

@@ -166,7 +166,38 @@
 .tagsFilter-tag--sale .tagsFilter-tag-title {
   font-size: 12px;
 }
-.custom-tagsFilter .tagsFilter-tag--sale .tagsFilter-tag-count {
-}
 .custom-tagsFilter .tagsFilter-tag--sale.tagsFilter-tag--active {
+  background-color: #ffca28;
+}
+
+/* Стили для тега Premium */
+.tagsFilter-tag--premium .tagsFilter-tag-title {
+  font-size: 12px;
+}
+.custom-tagsFilter .tagsFilter-tag--premium.tagsFilter-tag--active {
+  background-color: #7561e8;
+}
+
+/* Стили для тега New */
+.tagsFilter-tag--new .tagsFilter-tag-title {
+  font-size: 12px;
+}
+.custom-tagsFilter .tagsFilter-tag--new.tagsFilter-tag--active {
+  background-color: #4caf50;
+}
+
+/* Стили для тега Hit */
+.tagsFilter-tag--hit .tagsFilter-tag-title {
+  font-size: 12px;
+}
+.custom-tagsFilter .tagsFilter-tag--hit.tagsFilter-tag--active {
+  background-color: #ff6723;
+}
+
+/* Стили для тега Hot */
+.tagsFilter-tag--hot .tagsFilter-tag-title {
+  font-size: 12px;
+}
+.custom-tagsFilter .tagsFilter-tag--hot.tagsFilter-tag--active {
+  background-color: #ff5722;
 }
