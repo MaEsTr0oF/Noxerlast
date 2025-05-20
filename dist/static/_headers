@@ -1,3 +1,0 @@
-/*
-  X-Frame-Options: ALLOW-FROM https://t.me/
-  Content-Security-Policy: frame-ancestors 'self' https://t.me/ https://*.telegram.org/; 
