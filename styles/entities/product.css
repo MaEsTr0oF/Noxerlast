@@ -40,14 +40,20 @@
   height: 100%;
 }
 
-.product-card-sliderWrapper-tag {
+.product-card-sliderWrapper-tags{
   position: absolute;
+  top: 5px;
+  left: 5px;
   z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+}
+
+.product-card-sliderWrapper-tag {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 5px;
-  left: 5px;
   padding-left: 8px;
   padding-right: 8px;
   width: auto;
