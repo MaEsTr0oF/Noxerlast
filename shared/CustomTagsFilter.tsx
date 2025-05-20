@@ -469,7 +469,9 @@ const CustomTagsFilter: React.FC<CustomTagsFilterProps> = observer(
       allTagsArray.length > initialCalculatedTagCount &&
       initialCalculatedTagCount > 0;
     const showHideButton =
-      allTagsAreVisible && allTagsArray.length > initialCalculatedTagCount;
+      allTagsAreVisible &&
+      allTagsArray.length > initialCalculatedTagCount &&
+      allTagsArray.length > 1;
 
     return (
       <div className="tagsFilter custom-tagsFilter">
