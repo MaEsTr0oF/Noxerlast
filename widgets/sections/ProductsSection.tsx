@@ -228,9 +228,10 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
 
             return bPrice - aPrice;
           });
-        case "Сначала популярные":
+        case "Рекомендуемые":
           return [...products].sort((a, b) => {
             if (a.importance_num !== null && b.importance_num !== null) {
+              console.log(b)
               return b.importance_num - a.importance_num;
             }
             if (a.importance_num !== null) return -1;

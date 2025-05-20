@@ -654,7 +654,7 @@ const ShoppingCartContent = observer(() => {
 
   const updateProductsLimit = () => {
     if (typeof window !== "undefined") {
-      setProductsLimit(window.innerWidth >= 480 ? 3 : 2);
+      setProductsLimit(window.innerWidth >= 540 ? 3 : 2);
     }
   };
 
@@ -1080,10 +1080,7 @@ const ShoppingCartContent = observer(() => {
 
     try {
       // Отправляем заказ на API повторно
-      const response = await axios.post(
-        "https://noxer-ai.ru/api/orders",
-        currentOrderData
-      );
+      const response = await apiInstance.post("/order", currentOrderData);
 
       // Сохраняем ответ от API
       setOrderResponse(response.data);
