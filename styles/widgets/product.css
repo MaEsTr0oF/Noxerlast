@@ -534,7 +534,9 @@
 .add-to-cart-button--added:hover {
   background-color: rgb(55, 55, 54);
 }
-
+.add-to-cart-button--disabled:hover{
+  background-color: #696969;
+}
 .add-to-cart-button--disabled {
   cursor: not-allowed;
   background-color: #696969;
