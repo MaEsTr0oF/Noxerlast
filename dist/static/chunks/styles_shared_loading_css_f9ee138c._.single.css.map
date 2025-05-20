@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/shared/loading.css"],"sourcesContent":[".loading-container {\r\n    display: flex;\r\n    justify-items: center;\r\n    justify-content: center;\r\n    align-items: center;\r\n    align-content: center;\r\n    padding: 10px;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.loading-spinner {\r\n    display: block;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 2px solid #292928;\r\n    border-left: 4px solid transparent;\r\n    border-radius: 100%;\r\n    animation: spin 1s infinite linear;\r\n}\r\n\r\n@keyframes spin {\r\n    0%{\r\n        transform: rotate(0deg);\r\n    }\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}"],"names":[],"mappings":"AAAA;;;;;;;;;AAWA;;;;;;;;;;AAUA"}}]
+}

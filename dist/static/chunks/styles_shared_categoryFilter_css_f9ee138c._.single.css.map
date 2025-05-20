@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/shared/categoryFilter.css"],"sourcesContent":[".swiper-wrapper {\n  display: flex;\n}\n\n.categoryFilter {\n  position: relative;\n  display: flex;\n  margin-top: 13px;\n  height: auto;\n  overflow: hidden;\n}\n\n.categoryFilter-tag {\n  color: var(--text-main);\n  display: flex;\n  align-items: center;\n  column-gap: 5px;\n  padding-left: 5px;\n  padding-right: 12px;\n  min-width: 90px;\n  /* max-width: 145px; */\n  height: 38px;\n  background-color: #ffffff;\n  border-radius: 40px;\n  cursor: pointer;\n  transition: 0.6s ease;\n  box-shadow: 0px 0px 10px 0px #3030300d;\n}\n\n.categoryFilter-tag img {\n  width: 28px;\n  height: 28px;\n  border-radius: 100%;\n}\n\n.categoryFilter-tag-title {\n  font-size: 13px;\n  font-weight: 500;\n  text-wrap: nowrap;\n}\n\n.categoryFilter-tag--active {\n  background-color: rgba(60, 60, 60, 1);\n  color: #ffffff;\n}\n\n.categoryFilter-tag-closeButton {\n  margin-left: 1px;\n  width: 10px;\n  height: 10px;\n}\n"],"names":[],"mappings":"AAAA;;;;AAIA;;;;;;;;AAQA;;;;;;;;;;;;;;;;AAiBA;;;;;;AAMA;;;;;;AAMA;;;;;AAKA"}}]
+}

@@ -1,0 +1,15 @@
+/* [project]/styles/entities/video-review.css [app-client] (css) */
+.video-review-wrapper {
+  position: relative;
+}
+
+.video-review-helper-block {
+  z-index: 1;
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*# sourceMappingURL=styles_entities_video-review_css_f9ee138c._.single.css.map*/

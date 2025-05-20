@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/widgets/favorites.css"],"sourcesContent":[".favoritesMain {\r\n  width: 100%;\r\n  min-height: calc(100vh - 200px);\r\n  box-sizing: border-box;\r\n  max-width: 1440px;\r\n  margin: 0 auto;\r\n  padding: 24px;\r\n}\r\n\r\n.favoritesMain.favoritesMain--ios {\r\n  min-height: calc(100vh - 223px);\r\n}\r\n\r\n.favoritesMain-title {\r\n  font-family: var(--font-gilroy);\r\n  font-size: 24px;\r\n  font-weight: 700;\r\n  margin-bottom: 16px;\r\n}\r\n\r\n.favoritesMain-empty {\r\n  display: grid;\r\n  justify-items: center;\r\n  margin-top: 90px;\r\n  text-align: center;\r\n  padding: 20px;\r\n}\r\n\r\n.favoritesMain-empty-title {\r\n  font-family: var(--font-inter);\r\n  font-size: 24px;\r\n  font-weight: 800;\r\n  line-height: 120%;\r\n  color: #292928;\r\n  margin-bottom: 16px;\r\n  max-width: 260px;\r\n}\r\n\r\n.favoritesMain-empty-text {\r\n  font-family: var(--font-inter);\r\n  font-size: 17px;\r\n  color: #292928;\r\n  font-weight: 400;\r\n  max-width: 300px;\r\n}\r\n"],"names":[],"mappings":"AAAA;;;;;;;;;AASA;;;;AAIA;;;;;;;AAOA;;;;;;;;AAQA;;;;;;;;;;AAUA"}}]
+}

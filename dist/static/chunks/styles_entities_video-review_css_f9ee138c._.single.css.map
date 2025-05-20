@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/entities/video-review.css"],"sourcesContent":[".video-review-wrapper{\r\n    position: relative;\r\n}\r\n.video-review-helper-block{\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 90%;\r\n    z-index: 1;\r\n}"],"names":[],"mappings":"AAAA;;;;AAGA"}}]
+}

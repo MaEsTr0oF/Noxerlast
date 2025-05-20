@@ -1,0 +1,32 @@
+/* [project]/styles/widgets/pageWrapper.css [app-client] (css) */
+.wrapper-footer.wrapper-footer-productPage {
+  padding-top: 15px;
+  padding-bottom: 140px;
+}
+
+.wrapper-footer.wrapper-footer-productPage.wrapper-footer--ios {
+  padding-bottom: 150px;
+}
+
+.wrapper-footer {
+  padding-top: 20px;
+  padding-bottom: 78px;
+}
+
+.wrapper-footer.wrapper-footer--ios {
+  padding-bottom: 85px;
+}
+
+.footer-text {
+  color: #292928;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 400;
+}
+
+.footer-link {
+  color: #1e96c8;
+  outline: none;
+}
+
+/*# sourceMappingURL=styles_widgets_pageWrapper_css_f9ee138c._.single.css.map*/
