@@ -1001,14 +1001,19 @@ const ProductContent = observer(() => {
               !isAddToCartEnabled ||
               (targetProduct.colors?.length > 0 && !selectedColor)
             ) {
-              showColorRequiredPopup();
+              if(!isAddingToCart)
+                showColorRequiredPopup();
+              else
+                handleAddToCart();
             } else {
               handleAddToCart();
             }
           }}
-          className={`add-to-cart-button click-effect-block 
+          className={`add-to-cart-button
             ${isAddingToCart ? "add-to-cart-button--added" : ""}
-            ${!isAddToCartEnabled || (targetProduct.colors?.length > 0 && !selectedColor) ? "add-to-cart-button--disabled" : ""}
+            ${!isAddToCartEnabled || (targetProduct.colors?.length > 0 && !selectedColor) 
+            ? isAddingToCart ? "" : "add-to-cart-button--disabled" 
+            : "click-effect-block"}
             ${detectIOS() ? "add-to-cart-button--ios" : ""}`}
         >
           <p className="add-to-cart-text">
