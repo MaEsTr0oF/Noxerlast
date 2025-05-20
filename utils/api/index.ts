@@ -8,7 +8,7 @@ const getBaseUrl = () => {
   }
 
   //return `https://noxer-ai.ru/api`;
-  return "https://yamal-store.ru/api";
+  //return "https://yamal-store.ru/api";
   return `${window.location.origin}/api`;
 };
 
