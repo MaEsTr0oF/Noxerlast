@@ -12,12 +12,6 @@ const PageWrapper: React.FC<{ children: any }> = ({ children }) => {
   const location = useLocation();
   const isProductPage = location.pathname.includes("/product/");
 
-  const getProjectName = () => {
-    return (
-      dataStore.data?.special_project_parameters?.project_name_value ||
-      "noxerai_bot"
-    );
-  };
 
   return (
     <>
@@ -32,12 +26,13 @@ const PageWrapper: React.FC<{ children: any }> = ({ children }) => {
           `}
       >
         <p className="footer-text">
-          Разработано на платформе Noxer <br />
+        {dataStore.data?.special_project_parameters?.project_name_extra_field_1} <br />
           <a
-            href="https://t.me/noxerai_bot`"
+            href={dataStore.data?.special_project_parameters?.footer_link_value}
+            target="_blank"
             className="index-telegram-open-special_tg footer-link"
           >
-            @{getProjectName()}
+            {dataStore.data?.special_project_parameters?.footer_link_description}
           </a>
         </p>
       </div>

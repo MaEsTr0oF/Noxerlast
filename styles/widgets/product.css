@@ -353,6 +353,7 @@
   font-weight: 400;
   max-height: 0;
   overflow: hidden;
+  white-space: pre-line;
   transition:
     max-height 0.2s ease-in-out,
     margin-top 0.2s ease-in-out;
