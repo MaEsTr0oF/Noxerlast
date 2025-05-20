@@ -13,7 +13,6 @@ import axios, { AxiosError } from "axios";
 import { shoppingCartStore } from "@/store/ShoppingCartStore";
 
 import ProductsSection from "@/widgets/sections/ProductsSection";
-import Link from "next/link";
 import MaskedInput from "react-text-mask";
 import "@/styles/widgets/shoppingCart.css";
 import Loading from "@/shared/Loading";
@@ -970,11 +969,14 @@ const ShoppingCartContent = observer(() => {
       city: city,
       house: house,
       apartment: apartment,
+      comment: comment,
       payment_type:
         allowPostPayment && typePaymentId === 2 ? "delivery" : "online",
       promocode: promocode || "",
       products: productsForApi,
     };
+
+    console.log(orderData)
 
     // Сохраняем данные текущего заказа для возможности повторной отправки
     setCurrentOrderData(orderData);

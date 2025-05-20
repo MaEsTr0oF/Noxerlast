@@ -66,21 +66,6 @@ const TheHeader = () => {
       window.removeEventListener("pageshow", () => {});
     };
   }, [location]);
-  function openLinkHandler() {
-    let channelName =
-      dataStore.data?.special_project_parameters?.telegram_header_link_value ||
-      "noxerai_bot";
-
-    // Если имя канала начинается с @, удаляем этот символ для URL
-    if (channelName.startsWith("@")) {
-      channelName = channelName.substring(1);
-    }
-
-    const link = `https://t.me/${channelName}`;
-    if (link) {
-      window.open(link, "_blank");
-    }
-  }
 
   function detectMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -92,13 +77,6 @@ const TheHeader = () => {
     if (!name) return "";
     return (
       name.charAt(0).toLocaleUpperCase() + name.slice(1).toLocaleLowerCase()
-    );
-  };
-
-  const getProjectName = () => {
-    return (
-      dataStore.data?.special_project_parameters?.project_name_value ||
-      "noxerai_bot"
     );
   };
 
@@ -126,12 +104,12 @@ const TheHeader = () => {
         </p>
       </div>
 
-      <button onClick={openLinkHandler} className="header-telegram">
+      <a href={dataStore.data?.special_project_parameters?.telegram_header_link_value} target="_blank" className="header-telegram">
         <img src={`${iconsBaseLink}telegram-icon.svg`} alt="" />
         <p className="header-telegram-text index-telegram-open-special_tg">
-          {getProjectName()}
+          {dataStore.data?.special_project_parameters?.telegram_bot_username_value}
         </p>
-      </button>
+      </a>
     </header>
   );
 };

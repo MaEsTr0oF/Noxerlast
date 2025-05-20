@@ -409,11 +409,11 @@ const ProductsSection: React.FC<ProductsSectionProps> = observer(
                     <Product
                       key={`${product.Product_ID}-${index}`}
                       id={product.Product_ID}
-                      tag={
+                      tags={
                         product.marks &&
                         Array.isArray(product.marks) &&
                         product.marks.length > 0
-                          ? product.marks[0].Mark_Name
+                          ? product.marks.map((m:any) => m.Mark_Name)
                           : ""
                       }
                       images={
