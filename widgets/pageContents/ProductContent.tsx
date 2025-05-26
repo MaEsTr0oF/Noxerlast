@@ -73,24 +73,6 @@ const ProductContent = observer(() => {
 
   const [colorRequiredPopup, setColorRequiredPopup] = useState<boolean>(false);
 
-  const infoCards = [
-    {
-      title: "Наши гарантии на товар",
-      image: `${iconsBaseLink}warranty-icon.svg`,
-    },
-    {
-      title: "О нашем магазине",
-      image: `${iconsBaseLink}about-icon.svg`,
-    },
-    {
-      title: "Как можно вернуть товар?",
-      image: `${iconsBaseLink}refund-icon.svg`,
-    },
-    {
-      title: "Доставка и оплата товара",
-      image: `${iconsBaseLink}delivery-icon.svg`,
-    },
-  ];
 
 
   function addSettingItem(settingItem: any, paramName: string) {
@@ -734,7 +716,10 @@ const ProductContent = observer(() => {
             <h3 className="parameters-title">{selectedParameterType}</h3>
             <div className="parameters-content">
               <Slider height={"38px"} between="5px">
-                {targetProduct.parameters.map((param: any) => {
+                {targetProduct.parameters
+                .slice()
+                .sort((a: any, b: any) => a.Parameter_ID - b.Parameter_ID)
+                .map((param: any) => {
                   // Получаем ключ параметра
                   const paramKey = param.name;
 
@@ -776,7 +761,10 @@ const ProductContent = observer(() => {
             <h3 className="parameters-title">Цвет</h3>
             <div className="color-options">
               <Slider height={"42px"} between={"5px"}>
-                {targetProduct.colors.map((color: any) => (
+                {targetProduct.colors
+                .slice()
+                .sort((a: any, b: any) => a.Color_ID - b.Color_ID)
+                .map((color: any) => (
                   <div
                     key={`color-${color.Color_ID || Math.random()}`}
                     className={`color-option ${selectedColor?.Color_ID === color.Color_ID ? "color-option--active" : ""}`}
@@ -863,13 +851,7 @@ const ProductContent = observer(() => {
                   )
                 )
                 .map((badge: any, index: number) => {
-                  const cardInfo =
-                    index < infoCards.length
-                      ? infoCards[index]
-                      : {
-                          title: "Информация",
-                          image: `${iconsBaseLink}about-icon.svg`,
-                        };
+                  
 
                   return (
                     <div
@@ -877,11 +859,11 @@ const ProductContent = observer(() => {
                       onClick={() => openLinkTeletype(badge.url || "#")}
                       className="info-card click-effect-block"
                     >
-                      <p className="info-text">{cardInfo.title}</p>
+                      <p className="info-text">{badge.description}</p>
 
                       <img
-                        src={cardInfo.image}
-                        alt={cardInfo.title}
+                        src={badge.image_url}
+                        alt={badge.description}
                         className="info-icon"
                         onError={(e) => {
                           e.currentTarget.src = "/placeholder-icon.svg";

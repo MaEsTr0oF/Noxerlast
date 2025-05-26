@@ -139,7 +139,10 @@ const HomePageContent = observer(() => {
 
       <div className="categoriesContainer">
         <Slider height={"100%"}>
-          {useCategories().map(
+          {useCategories()
+          .slice()
+          .sort((a:any, b:any) => a.Category_ID - b.Category_ID)
+          .map(
             (category: {
               Category_ID: number;
               Category_Image: string;
